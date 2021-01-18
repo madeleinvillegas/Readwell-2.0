@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Readwell2.0"
