@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 public class Database extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "readwelldc";
+    private static final String DATABASE_NAME = "readwelldb";
     private static final int DATABASE_VERSION = 1;
     static final String books = "books";
     static final String login = "login";
@@ -27,6 +27,10 @@ public class Database extends SQLiteOpenHelper {
 
     public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+    }
+
+    public Database(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void onCreate(SQLiteDatabase db) {
@@ -48,8 +52,8 @@ public class Database extends SQLiteOpenHelper {
         ContentValues values;
         try {
             values = new ContentValues();
-            values.put("username",username);
-            values.put("password",password);
+            values.put("username", username);
+            values.put("password", password);
             long i = db.insert(login, null, values);
             Log.i("Insert", i + "");
             db.setTransactionSuccessful();
