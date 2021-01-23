@@ -28,11 +28,11 @@ public class UserSignup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_signup);
-        
-        //
+
         context = UserSignup.this;
         db = new Database(context);
-        
+
+        // User input
         signUpUsername = findViewById(R.id.signUpUsername);
         signUpPassword = findViewById(R.id.signUpPass);
         terms = findViewById(R.id.confirm);
@@ -56,22 +56,18 @@ public class UserSignup extends AppCompatActivity {
         });
     }
     private void createAccount() {
+        // Checks input
         String email = signUpUsername.getText().toString();
         String pass = signUpPassword.getText().toString();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "You forgot to add your email", Toast.LENGTH_SHORT).show();
-        }
-
-        else if (TextUtils.isEmpty(pass)) {
+        } else if (TextUtils.isEmpty(pass)) {
             Toast.makeText(this, "You forgot to add your password", Toast.LENGTH_SHORT).show();
-        }
-        else if (pass.length() < 8) {
+        } else if (pass.length() < 8) {
             Toast.makeText(this, "Your password should be at least 8 characters long", Toast.LENGTH_SHORT).show();
-        }
-        else if (!terms.isChecked()) {
+        } else if (!terms.isChecked()) {
             Toast.makeText(this, "You need to consent to our Terms and Conditions and Privacy Policy.", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             loading.setTitle("Create Account");
             loading.setMessage("Please wait while we are creating you account.");
             loading.setCanceledOnTouchOutside(false);

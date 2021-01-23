@@ -62,12 +62,9 @@ public class UserLogin extends AppCompatActivity {
         // Checking user input
         if (TextUtils.isEmpty(user)) {
             Toast.makeText(this, "You forgot to add your username", Toast.LENGTH_SHORT).show();
-        }
-
-        else if (TextUtils.isEmpty(pass)) {
+        } else if (TextUtils.isEmpty(pass)) {
             Toast.makeText(this, "You forgot to add your password", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             loading.setTitle("Login");
             loading.setMessage("Please wait while we are checking your account.");
             loading.setCanceledOnTouchOutside(false);

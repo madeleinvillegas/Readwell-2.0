@@ -11,15 +11,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Stack;
 
+public class MainActivity extends AppCompatActivity {
+    public static Stack<Book> cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         Context context = MainActivity.this;
-        Database db = new Database(context);
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
