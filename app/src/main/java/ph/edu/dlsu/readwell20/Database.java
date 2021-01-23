@@ -2,12 +2,10 @@ package ph.edu.dlsu.readwell20;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
 
 public class Database extends SQLiteOpenHelper {
 
@@ -18,23 +16,15 @@ public class Database extends SQLiteOpenHelper {
 
     // Add columns as needed
     private static final String CREATE_TABLE_BOOKS = "CREATE TABLE IF NOT EXISTS " + books +
-            "(stat_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT , price TEXT )";
-
+            "(stat_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price TEXT)";
 
     private static final String CREATE_TABLE_LOGIN = "CREATE TABLE IF NOT EXISTS " + login +
-            "(login_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT , password TEXT)";
+            "(login_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)";
 
-    private static final String DELETE_TABLE_BOOKS="DROP TABLE IF EXISTS " + books;
-    private static final String DELETE_TABLE_LOGIN="DROP TABLE IF EXISTS " + login;
+    private static final String DELETE_TABLE_BOOKS = "DROP TABLE IF EXISTS " + books;
+    private static final String DELETE_TABLE_LOGIN = "DROP TABLE IF EXISTS " + login;
 
-
-    public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-    }
-
-    public Database(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
+    public Database(Context context) { super(context, DATABASE_NAME, null, DATABASE_VERSION); }
 
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_BOOKS);
@@ -45,19 +35,18 @@ public class Database extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DELETE_TABLE_BOOKS);
         db.execSQL(DELETE_TABLE_LOGIN);
-        //Create tables again
+        // Create tables again
         onCreate(db);
     }
-    public void insertDataIntoLogin(String username, String password ){
+
+    public void insertDataIntoLogin(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();  // Open the database for writing
         db.beginTransaction(); // Start the transaction.
-        ContentValues values;
         try {
-            values = new ContentValues();
+            ContentValues values = new ContentValues();
             values.put("username", username);
             values.put("password", password);
-            long i = db.insert(login, null, values);
-            Log.i("Insert", i + "");
+            db.insert(login, null, values);
             db.setTransactionSuccessful();
         } catch (SQLiteException e) {
             e.printStackTrace();
@@ -67,6 +56,16 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
-
-
+    public boolean doesUserExists(String username) {
+        SQLiteDatabase sample = this.getReadableDatabase();
+        Cursor cursor = sample.rawQuery("SELECT username FROM login", null);
+        while (cursor.moveToNext()) {
+            if (cursor.getString(cursor.getColumnIndex("username")).equals(username)) {
+                cursor.close();
+                return true;
+            }
+        }
+        cursor.close();
+        return false;
+    }
 }

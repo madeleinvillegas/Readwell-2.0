@@ -1,8 +1,5 @@
 package ph.edu.dlsu.readwell20;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,11 +8,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class UserLogin extends AppCompatActivity {
     private EditText loginUsername;
@@ -23,15 +21,21 @@ public class UserLogin extends AppCompatActivity {
     private ProgressDialog loading;
     private Context context;
     private Database db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
         // Setup the database
         context = UserLogin.this;
-        db = new Database(context);
+        db = new Database(this);
 
-        db.insertDataIntoLogin("madel", "123");     // Remove this later
+        // REMOVE THIS
+        if (!db.doesUserExists("madel")) {
+            db.insertDataIntoLogin("madel", "123");
+            db.insertDataIntoLogin("qwe", "qwe");
+        }
+        // UNTIL HERE
 
         // Get user input
         loginUsername = findViewById(R.id.loginUsername);
@@ -40,21 +44,14 @@ public class UserLogin extends AppCompatActivity {
         TextView signUpHere = findViewById(R.id.signUpHere);
         loading = new ProgressDialog(this);
 
-        signUpHere.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserLogin.this, UserSignup.class);
-                startActivity(intent);
-            }
+        signUpHere.setOnClickListener(view -> {
+            Intent intent = new Intent(UserLogin.this, UserSignup.class);
+            startActivity(intent);
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
+        loginButton.setOnClickListener(v -> login());
     }
+
     private void login() {
         String user = loginUsername.getText().toString();
         String pass = loginPassword.getText().toString();
@@ -70,38 +67,34 @@ public class UserLogin extends AppCompatActivity {
             loading.setCanceledOnTouchOutside(false);
             loading.show();
             checkCredentials(user, pass);
+            loading.cancel();
         }
     }
+
+    @SuppressLint("ShowToast")
     public void checkCredentials(final String username, final String password) {
         SQLiteDatabase data = db.getReadableDatabase();
-        data.beginTransaction();
+
         // SQL query
         String query = "SELECT username, password FROM " + Database.login;
         Cursor cursor = data.rawQuery(query, null);
-        Toast toast;
-        if (cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
-                // Username and password inputted is found on the database
-                if (username.equals(cursor.getString(cursor.getColumnIndex("username")))
-                        && password.equals(cursor.getString(cursor.getColumnIndex("password")))) {
-                    toast = Toast.makeText(getApplicationContext(),
-                            "Successfully logged in",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
-                    Intent main = new Intent(UserLogin.this, MainActivity.class);
-                    startActivity(main);
-                    break;
-                } else {
-                    toast = Toast.makeText(getApplicationContext(),
-                            "Failed",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
-                    break;
-                }
+
+        Toast toast = Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT);
+
+        while (cursor.moveToNext()) {
+            // Username and password inputted is found on the database
+            String tmpUser = cursor.getString(cursor.getColumnIndex("username"));
+            String tmpPass = cursor.getString(cursor.getColumnIndex("password"));
+            if (username.equals(tmpUser) && password.equals(tmpPass)) {
+                toast = Toast.makeText(getApplicationContext(), "Successfully Logged In", Toast.LENGTH_SHORT);
+                Intent main = new Intent(context, MainActivity.class);
+                startActivity(main);
+                break;
             }
-            data.setTransactionSuccessful();
-            data.endTransaction();
-            data.close();
         }
+
+        toast.show();
+        cursor.close();
+        data.close();
     }
 }

@@ -2,6 +2,7 @@ package ph.edu.dlsu.readwell20;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -40,20 +41,12 @@ public class UserSignup extends AppCompatActivity {
         TextView backToLogin = findViewById(R.id.logInHere);
         loading = new ProgressDialog(this);
 
-        backToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserSignup.this, UserLogin.class);
-                startActivity(intent);
-            }
+        backToLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(context, UserLogin.class);
+            startActivity(intent);
         });
 
-        signUpClick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createAccount();
-            }
-        });
+        signUpClick.setOnClickListener(view -> createAccount());
     }
     private void createAccount() {
         // Checks input
@@ -73,38 +66,20 @@ public class UserSignup extends AppCompatActivity {
             loading.setCanceledOnTouchOutside(false);
             loading.show();
             checkEmail(email, pass);
+            loading.cancel();
         }
     }
-    private void checkEmail(final String username, final String password) {
-        // Do checks if email already exists
-        SQLiteDatabase data = db.getReadableDatabase();
-        data.beginTransaction();
-        String query = "SELECT username FROM " + Database.login;
-        Cursor cursor = data.rawQuery(query, null);
-        Toast toast;
-        if (cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
-                // Username and password inputted is found on the database
-                if (username.equals(cursor.getString(cursor.getColumnIndex("username")))) {
-                    toast = Toast.makeText(getApplicationContext(),
-                            "User already exists",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
-                    break;
-                } else {
-                    toast = Toast.makeText(getApplicationContext(),
-                            "Successfully created account",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
 
-                    Intent main = new Intent(UserSignup.this, UserLogin.class);
-                    startActivity(main);
-                    break;
-                }
-            }
-            data.setTransactionSuccessful();
-            data.endTransaction();
-            data.close();
+    @SuppressLint("ShowToast")
+    private void checkEmail(final String username, final String password) {
+        Toast toast = Toast.makeText(getApplicationContext(), "Successfully Created Account", Toast.LENGTH_SHORT);
+        if (db.doesUserExists(username)) {
+            toast = Toast.makeText(getApplicationContext(), "User Already Exists", Toast.LENGTH_SHORT);
+        } else {
+            db.insertDataIntoLogin(username, password);
+            Intent main = new Intent(UserSignup.this, UserLogin.class);
+            startActivity(main);
         }
+        toast.show();
     }
 }
