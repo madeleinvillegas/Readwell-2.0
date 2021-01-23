@@ -1,5 +1,6 @@
 package ph.edu.dlsu.readwell20;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -14,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Context context = MainActivity.this;
+        Database db = new Database(context);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

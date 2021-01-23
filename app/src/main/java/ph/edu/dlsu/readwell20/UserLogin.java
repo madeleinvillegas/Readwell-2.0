@@ -27,11 +27,13 @@ public class UserLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-
+        // Setup the database
         context = UserLogin.this;
         db = new Database(context);
+
         db.insertDataIntoLogin("madel", "123");     // Remove this later
 
+        // Get user input
         loginUsername = findViewById(R.id.loginUsername);
         loginPassword = findViewById(R.id.loginPass);
         Button loginButton = findViewById(R.id.btnLogin);
@@ -57,6 +59,7 @@ public class UserLogin extends AppCompatActivity {
         String user = loginUsername.getText().toString();
         String pass = loginPassword.getText().toString();
 
+        // Checking user input
         if (TextUtils.isEmpty(user)) {
             Toast.makeText(this, "You forgot to add your username", Toast.LENGTH_SHORT).show();
         }
@@ -75,11 +78,13 @@ public class UserLogin extends AppCompatActivity {
     public void checkCredentials(final String username, final String password) {
         SQLiteDatabase data = db.getReadableDatabase();
         data.beginTransaction();
+        // SQL query
         String query = "SELECT username, password FROM " + Database.login;
         Cursor cursor = data.rawQuery(query, null);
         Toast toast;
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
+                // Username and password inputted is found on the database
                 if (username.equals(cursor.getString(cursor.getColumnIndex("username")))
                         && password.equals(cursor.getString(cursor.getColumnIndex("password")))) {
                     toast = Toast.makeText(getApplicationContext(),
@@ -91,7 +96,7 @@ public class UserLogin extends AppCompatActivity {
                     break;
                 } else {
                     toast = Toast.makeText(getApplicationContext(),
-                            "Failed Retry",
+                            "Failed",
                             Toast.LENGTH_SHORT);
                     toast.show();
                     break;

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,7 +29,7 @@ public class UserSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_signup);
         
-        // Add db 
+        //
         context = UserSignup.this;
         db = new Database(context);
         
@@ -80,7 +81,34 @@ public class UserSignup extends AppCompatActivity {
     }
     private void checkEmail(final String username, final String password) {
         // Do checks if email already exists
-        db.insertDataIntoLogin(username, password);
+        SQLiteDatabase data = db.getReadableDatabase();
+        data.beginTransaction();
+        String query = "SELECT username FROM " + Database.login;
+        Cursor cursor = data.rawQuery(query, null);
         Toast toast;
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                // Username and password inputted is found on the database
+                if (username.equals(cursor.getString(cursor.getColumnIndex("username")))) {
+                    toast = Toast.makeText(getApplicationContext(),
+                            "User already exists",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                    break;
+                } else {
+                    toast = Toast.makeText(getApplicationContext(),
+                            "Successfully created account",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Intent main = new Intent(UserSignup.this, UserLogin.class);
+                    startActivity(main);
+                    break;
+                }
+            }
+            data.setTransactionSuccessful();
+            data.endTransaction();
+            data.close();
+        }
     }
 }

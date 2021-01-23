@@ -16,8 +16,11 @@ public class Database extends SQLiteOpenHelper {
     static final String books = "books";
     static final String login = "login";
 
+    // Add columns as needed
     private static final String CREATE_TABLE_BOOKS = "CREATE TABLE IF NOT EXISTS " + books +
             "(stat_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT , price TEXT )";
+
+
     private static final String CREATE_TABLE_LOGIN = "CREATE TABLE IF NOT EXISTS " + login +
             "(login_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT , password TEXT)";
 
@@ -36,7 +39,6 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_BOOKS);
         db.execSQL(CREATE_TABLE_LOGIN);
-
     }
 
     @Override
@@ -65,9 +67,6 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
-    public void insertDataIntoBooks(String title, String author) {
-
-    }
 
 
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewDetailsOfABook"
+    tools:ignore="MissingConstraints">
+    <!--    Data we have: Title, author/s, publisher, language, date published,
+        pages, subjects/genre, synopsis, price, rating
+-->
+    <ImageView
+        android:id="@+id/book_image"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="2dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:text="A really really long book title and I don't know what the title is so yeah"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_toRightOf="@+id/book_image"
+        android:textSize="18dp"
+        android:gravity="center_horizontal"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/book_author"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_title"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:text="Author One, Author Two, Author Three"
+        android:layout_toRightOf="@+id/book_image"
+        android:textSize="18dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/book_rating"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_author"
+        android:text="Rating"
+        android:layout_toRightOf="@+id/book_image"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="17dp"
+        />
+    <TextView
+        android:id="@+id/book_genre"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_rating"
+        android:text="Genre"
+        android:layout_toRightOf="@+id/book_image"
+        android:textSize="17dp"
+        android:layout_marginLeft="10dp"
+        />
+    <Button
+        android:id="@+id/cart"
+        android:layout_width="110dp"
+        android:layout_margin="10dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/book_image"
+        android:background="#bdbdc1"
+        android:text="Add to \nCart"/>
+    <TextView
+        android:id="@+id/book_synopsis"
+        android:layout_margin="10dp"
+        android:layout_width="4000dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cart"
+        android:text="Synopsis is \nhere\n\n\n\n\njust in case mahaba"
+        android:layout_marginTop="2dp"
+        android:textSize="16dp"
+        />
+
+    <TableRow
+        android:layout_below="@+id/book_synopsis">
+        <ImageView
+            android:id="@+id/book_image_suggestion1"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="2dp"/>
+
+        <ImageView
+            android:id="@+id/book_image_suggestion2"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="2dp"/>
+        <ImageView
+            android:id="@+id/book_image_suggestion3"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="2dp"/>
+        <!--        Add the title and author of the suggested book below the image of the book-->
+    </TableRow>
+
+</RelativeLayout>
