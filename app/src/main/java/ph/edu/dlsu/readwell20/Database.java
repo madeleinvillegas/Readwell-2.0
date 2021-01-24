@@ -1,5 +1,6 @@
 package ph.edu.dlsu.readwell20;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -57,8 +58,8 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public boolean doesUserExists(String username) {
-        SQLiteDatabase sample = this.getReadableDatabase();
-        Cursor cursor = sample.rawQuery("SELECT username FROM login", null);
+        SQLiteDatabase temp = this.getReadableDatabase();
+        Cursor cursor = temp.rawQuery("SELECT username FROM login", null);
         while (cursor.moveToNext()) {
             if (cursor.getString(cursor.getColumnIndex("username")).equals(username)) {
                 cursor.close();
@@ -68,4 +69,32 @@ public class Database extends SQLiteOpenHelper {
         cursor.close();
         return false;
     }
+
+    public int getBooksCount() {
+        SQLiteDatabase temp = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = temp.rawQuery("SELECT name FROM books", null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
+//    public void initDatabase() {
+//        ImageView sample = findViewById(R.id.sampleImage);
+//        Picasso.get().load("https://covers.openlibrary.org/b/id/8739161-L.jpg").into(new Target() {
+//            @Override
+//            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//                sample.setImageBitmap(bitmap);
+//            }
+//
+//            @Override
+//            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+//
+//            }
+//
+//            @Override
+//            public void onPrepareLoad(Drawable placeHolderDrawable) {
+//
+//            }
+//        });
+//    }
 }

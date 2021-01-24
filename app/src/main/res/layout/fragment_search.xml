@@ -1,60 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="40px"
+    android:layout_marginLeft="40px"
+    android:layout_marginTop="40px"
+    android:layout_marginEnd="40px"
+    android:layout_marginRight="40px"
+    android:layout_marginBottom="150px"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.search.SearchFragment">
+    android:paddingBottom="150px">
 
     <TextView
         android:id="@+id/spacer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to the Search Tab"
-        android:textSize="30dp"
-        android:layout_margin="10dp"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginBottom="50px"
+        android:gravity="center"
+        android:text="Search Tab"
+        android:textSize="60sp" />
 
     <TextView
-        android:layout_below="@+id/spacer1"
         android:id="@+id/spacer2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:textAlignment="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="Search for your favorite book by entering the title of your book down below"
-        android:gravity="center_horizontal" />
+        android:layout_marginBottom="100px"
+        android:gravity="center"
+        android:text="Search For A Book By Using Title Below"
+        android:textSize="24sp" />
 
     <EditText
-        android:layout_below="@+id/spacer2"
         android:id="@+id/searchInput"
-        android:layout_width="350dp"
-        android:layout_gravity="center"
-        android:layout_height="50dp"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="250dp"
-        android:contentDescription="Search"
-        android:hint="🔍"
-        android:textSize="25dp"
-        tools:ignore="MissingConstraints">
-    </EditText>
-
-    <Button
-        android:layout_below="@+id/searchInput"
-        android:id="@+id/btnSearch"
-        android:background="@drawable/border_on_buttons"
-        android:textSize="50px"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search Now!">
-    </Button>
+        android:ems="10"
+        android:hint="Book Title"
+        android:inputType="textPersonName" />
 
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search" />
 </LinearLayout>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,10 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import ph.edu.dlsu.readwell20.R;
-import ph.edu.dlsu.readwell20.ViewDetailsOfABook;
+import ph.edu.dlsu.readwell20.BookDetails;
 
 public class HomeFragment extends Fragment {
 
@@ -46,7 +44,7 @@ public class HomeFragment extends Fragment {
         return root;
     }
     public void goToViewDetails() {
-        Intent intent = new Intent(getActivity(), ViewDetailsOfABook.class);
+        Intent intent = new Intent(getActivity(), BookDetails.class);
         // convert to string array
 //                String[] data = {obj1.get(0).toString(), obj1.get(1).toString(), obj1.get(2).toString(),
 //                        obj1.get(3).toString(), obj1.get(4).toString(),obj1.get(5).toString()};

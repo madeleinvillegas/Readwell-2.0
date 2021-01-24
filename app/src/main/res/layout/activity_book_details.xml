@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewDetailsOfABook"
+    tools:context=".BookDetails"
     tools:ignore="MissingConstraints">
     <!--    Data we have: Title, author/s, publisher, language, date published,
         pages, subjects/genre, synopsis, price, rating
@@ -75,39 +75,49 @@
         android:layout_below="@+id/book_image"
         android:background="#bdbdc1"
         android:text="Add to \nCart"/>
+
     <TextView
         android:id="@+id/book_synopsis"
-        android:layout_margin="10dp"
         android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cart"
+        android:layout_margin="10dp"
+        android:layout_marginTop="61dp"
         android:text="Synopsis is \nhere\n\n\n\n\njust in case mahaba"
-        android:layout_marginTop="2dp"
-        android:textSize="16dp"
-        />
+        android:textSize="16dp" />
 
     <TableRow
-        android:layout_below="@+id/book_synopsis">
-        <ImageView
-            android:id="@+id/book_image_suggestion1"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="2dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/book_synopsis"
+        android:layout_marginStart="0px"
+        android:layout_marginLeft="0px"
+        android:layout_marginTop="0px"
+        android:layout_marginEnd="0px"
+        android:layout_marginRight="0px"
+        android:layout_marginBottom="0px"
+        android:gravity="center">
 
         <ImageView
-            android:id="@+id/book_image_suggestion2"
+            android:id="@+id/book_sug1"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:scaleType="centerCrop" />
+
         <ImageView
-            android:id="@+id/book_image_suggestion3"
+            android:id="@+id/book_sug2"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="2dp"/>
-        <!--        Add the title and author of the suggested book below the image of the book-->
+            android:layout_marginTop="2dp"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/book_sug3"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="centerCrop" />
     </TableRow>
 
 </RelativeLayout>
