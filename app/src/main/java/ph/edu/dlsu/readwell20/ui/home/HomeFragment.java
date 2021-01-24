@@ -42,19 +42,16 @@ public class HomeFragment extends Fragment {
 //        genre1.setText(obj1.get(3).toString());
 //        new DownloadImageTask((ImageView) root.findViewById(R.id.book_image1)).execute(obj1.get(4).toString());
 
-        book1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Shows the book information by using the book class, similar to search results
-                Intent intent = new Intent(getActivity(), ViewDetailsOfABook.class);
-                // convert to string array
+        book1.setOnClickListener(view -> goToViewDetails());
+        return root;
+    }
+    public void goToViewDetails() {
+        Intent intent = new Intent(getActivity(), ViewDetailsOfABook.class);
+        // convert to string array
 //                String[] data = {obj1.get(0).toString(), obj1.get(1).toString(), obj1.get(2).toString(),
 //                        obj1.get(3).toString(), obj1.get(4).toString(),obj1.get(5).toString()};
 //                intent.putExtra("data", data);
-                startActivity(intent);
-            }
-        });
-        return root;
+        startActivity(intent);
     }
 
     @Override

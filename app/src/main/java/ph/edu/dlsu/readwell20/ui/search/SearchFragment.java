@@ -21,24 +21,22 @@ import ph.edu.dlsu.readwell20.R;
 
 public class SearchFragment extends Fragment {
 
-
+    private EditText search;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_search, container, false);
-        final EditText search = root.findViewById(R.id.searchInput);
+        search = root.findViewById(R.id.searchInput);
         Button searchBtn = root.findViewById(R.id.btnSearch);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            // On click of the search button
-            @Override
-            public void onClick(View view) {
-                // Input is stored on whatToSearch
-                String whatToSearch = search.getText().toString();
-                if (TextUtils.isEmpty(whatToSearch)) {
-                    Toast.makeText(getActivity(), "Please enter a title on the search bar", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    // Chaquopy stuff that doesn't work yet
+        searchBtn.setOnClickListener(view -> searchTheBook());
+        return root;
+    }
+    public void searchTheBook() {
+        String whatToSearch = search.getText().toString();
+        if (TextUtils.isEmpty(whatToSearch)) {
+            Toast.makeText(getActivity(), "Please enter a title on the search bar", Toast.LENGTH_SHORT).show();
+        } else {
+            // Chaquopy stuff that doesn't work yet
 //                    Python py = Python.getInstance();
 //                    final PyObject pyobj = py.getModule("main");
 //                    List<PyObject> obj = pyobj.callAttr("search", whatToSearch).asList();
@@ -47,11 +45,6 @@ public class SearchFragment extends Fragment {
 //                            obj.get(3).toString(), obj.get(4).toString(), obj.get(5).toString()};
 //                    intent.putExtra("data", data);
 //                    startActivity(intent);
-                }
-
-            }
-        });
-
-        return root;
+        }
     }
 }
