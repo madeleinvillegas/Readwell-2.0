@@ -78,23 +78,18 @@ public class Database extends SQLiteOpenHelper {
         return count;
     }
 
-//    public void initDatabase() {
-//        ImageView sample = findViewById(R.id.sampleImage);
-//        Picasso.get().load("https://covers.openlibrary.org/b/id/8739161-L.jpg").into(new Target() {
-//            @Override
-//            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-//                sample.setImageBitmap(bitmap);
-//            }
-//
-//            @Override
-//            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-//
-//            }
-//
-//            @Override
-//            public void onPrepareLoad(Drawable placeHolderDrawable) {
-//
-//            }
-//        });
-//    }
+    public static Book[] getSampleBooks() {
+        return new Book[] {
+                new Book("Diary 1", "Casio"),
+                new Book("Diary 2", "Casio"),
+                new Book("Diary 3", "Casio"),
+                new Book("Diary 4", "Casio"),
+                new Book("Diary 5", "Casio"),
+                new Book("Diary 6", "Casio"),
+                new Book("Diary 7", "Casio"),
+                new Book("Diary 8", "Casio"),
+                new Book("Diary 9", "Casio"),
+                new Book("Diary 10", "Casio")
+        };
+    }
 }

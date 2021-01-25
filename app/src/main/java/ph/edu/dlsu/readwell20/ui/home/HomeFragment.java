@@ -5,16 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import ph.edu.dlsu.readwell20.BookDetails;
+import ph.edu.dlsu.readwell20.Database;
 import ph.edu.dlsu.readwell20.R;
 
 public class HomeFragment extends Fragment {
@@ -22,6 +20,11 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ListView listView = root.findViewById(R.id.home_list);
+        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, Database.getSampleBooks());
+        listView.setAdapter(adapter);
+
 
         // Chaquopy
 //        Python py = Python.getInstance();
@@ -37,6 +40,7 @@ public class HomeFragment extends Fragment {
 //        book1.setOnClickListener(view -> goToViewDetails());
         return root;
     }
+
     public void goToViewDetails() {
         Intent intent = new Intent(getActivity(), BookDetails.class);
         // convert to string array

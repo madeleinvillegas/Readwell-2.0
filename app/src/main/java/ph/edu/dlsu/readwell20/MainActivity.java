@@ -19,7 +19,7 @@ import java.util.Stack;
 import ph.edu.dlsu.readwell20.ui.search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
-    public static int lastTab = 2;
+    public static int lastTab = 0;
     public static Stack<Book> cart;
 
     @Override
