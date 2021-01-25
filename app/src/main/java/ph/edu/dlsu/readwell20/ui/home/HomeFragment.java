@@ -14,20 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import ph.edu.dlsu.readwell20.R;
 import ph.edu.dlsu.readwell20.BookDetails;
+import ph.edu.dlsu.readwell20.R;
 
 public class HomeFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final RelativeLayout book1 = root.findViewById(R.id.home_book1);
-        final TextView title1 = root.findViewById(R.id.home_title1);
-        final TextView author1 = root.findViewById(R.id.home_author1);
-        final TextView rating1 = root.findViewById(R.id.home_rating1);
-        final ImageView image1 = root.findViewById(R.id.home_image1);
-        final TextView genre1 = root.findViewById(R.id.home_genre1);
 
         // Chaquopy
 //        Python py = Python.getInstance();
@@ -40,7 +34,7 @@ public class HomeFragment extends Fragment {
 //        genre1.setText(obj1.get(3).toString());
 //        new DownloadImageTask((ImageView) root.findViewById(R.id.book_image1)).execute(obj1.get(4).toString());
 
-        book1.setOnClickListener(view -> goToViewDetails());
+//        book1.setOnClickListener(view -> goToViewDetails());
         return root;
     }
     public void goToViewDetails() {
@@ -57,9 +51,5 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 //        Button button = view.findViewById(R.id.button);
 //        button.setOnClickListener(v -> test());
-    }
-
-    private void test() {
-        Toast.makeText(getContext(), "LOL", Toast.LENGTH_SHORT).show();
     }
 }

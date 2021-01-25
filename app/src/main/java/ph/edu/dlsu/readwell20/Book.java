@@ -4,6 +4,11 @@ public class Book {
     public String title, author, publisher, language, datePublished, pages, genre, synopsis, price, rating;
     public Book recommended1, recommended2, recommended3;
 
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
     public Book(String title, String author, String publisher, String language, String datePublished,
                 String pages, String genre, String synopsis, String price, String rating,
                 Book recommended1, Book recommended2, Book recommended3) {
