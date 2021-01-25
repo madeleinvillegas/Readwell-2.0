@@ -1,0 +1,34 @@
+We
+        need
+        Title, author / s, publisher, language, date
+        published, pages, subjects / genre, synopsis, price, rating, 3
+        suggested
+        books
+        per
+        book
+
+
+
+
+request_result = requests.get(url)
+        # Creating soup from the fetched request
+        soup = bs4.BeautifulSoup(request_result.text, "html.parser")
+        title = soup.find('meta', {'itemprop': 'name'})
+        title = title['content']
+        author = soup.find('meta', {'itemprop': 'author'})
+        author = author['content']
+        publisher = soup.find('meta', {'itemprop': 'publisher'})
+        publisher = publisher['content']
+        price = soup.find('meta', {'itemprop': 'price'})
+        price = price['content']
+        currency = soup.find('meta', {'itemprop': 'priceCurrency'})
+        currency = currency['content']
+        ID = data[0].strip("\"\"")
+        rating = data[2].strip("\"\"")
+        datum = [ID, title, author, publisher, price, currency, rating]
+        data.append(datum)
+
+with open("database.csv", "w", newline="") as file:
+    csv_writer = csv.writer(file)
+    for datum in data:
+        csv_writer.writerow(datum)
