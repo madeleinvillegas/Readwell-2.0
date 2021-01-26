@@ -38,14 +38,14 @@ public class SearchFragment extends Fragment {
 //            Toast.makeText(getActivity(), "Please enter a title on the search bar", Toast.LENGTH_SHORT).show();
 //        } else {
             // Chaquopy stuff that doesn't work yet
-//                    Python py = Python.getInstance();
-//                    final PyObject pyobj = py.getModule("main");
-//                    List<PyObject> obj = pyobj.callAttr("search", whatToSearch).asList();
-//                    Intent intent = new Intent(getActivity(), Book.class);
-//                    String[] data = {obj.get(0).toString(), obj.get(1).toString(), obj.get(2).toString(),
+//            Python py = Python.getInstance();
+//            final PyObject pyobj = py.getModule("main");
+//            List<PyObject> obj = pyobj.callAttr("search", whatToSearch).asList();
+//            Intent intent = new Intent(getActivity(), Book.class);
+//            String[] data = {obj.get(0).toString(), obj.get(1).toString(), obj.get(2).toString(),
 //                            obj.get(3).toString(), obj.get(4).toString(), obj.get(5).toString()};
-//                    intent.putExtra("data", data);
-//                    startActivity(intent);
+//            intent.putExtra("data", data);
+//            startActivity(intent);
 //        }
     }
 }

@@ -12,8 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.squareup.picasso.Picasso;
-
 import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.R;
 
@@ -36,7 +34,7 @@ public class CartAdapter extends ArrayAdapter<Book> {
         TextView text = convertView.findViewById(R.id.home_item_title);
         text.setText(getItem(position).title);
         ImageView imageView = convertView.findViewById(R.id.home_item_cover);
-        Picasso.get().load("https://covers.openlibrary.org/b/id/8739161-L.jpg").resize(150, 150).centerCrop().into(imageView);
+//        Picasso.get().load("https://covers.openlibrary.org/b/id/8739161-L.jpg").resize(150, 150).centerCrop().into(imageView);
         return convertView;
     }
 }
