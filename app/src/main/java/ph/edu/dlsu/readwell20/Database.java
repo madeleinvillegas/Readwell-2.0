@@ -8,6 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Database extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "readwelldb";
@@ -79,17 +85,33 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public static Book[] getSampleBooks() {
-        return new Book[] {
-                new Book("Diary 1", "Casio"),
-                new Book("Diary 2", "Casio"),
-                new Book("Diary 3", "Casio"),
-                new Book("Diary 4", "Casio"),
-                new Book("Diary 5", "Casio"),
-                new Book("Diary 6", "Casio"),
-                new Book("Diary 7", "Casio"),
-                new Book("Diary 8", "Casio"),
-                new Book("Diary 9", "Casio"),
-                new Book("Diary 10", "Casio")
-        };
+
+        // make a python instance
+        Python py = Python.getInstance();
+
+        //get recommendations file
+        PyObject pyobj = py.getModule("recommendations");
+
+        //create object to store data
+        PyObject obj = (null);
+
+        //call function getBooks in recommendations.py
+        obj = pyobj.callAttr("getBooks");
+
+        //convert return value to java
+        String[][] books = obj.toJava(String[][].class);
+
+        // create ArrayList of books to easily append to and convert back to string
+        List<Book> Books = new ArrayList<>();
+
+        //create new book and add to array list
+        for(int i=0; i<books.length; i++){
+            Books.add(new Book(books[i][0], books[i][1], books[i][2], books[i][3], books[i][4],
+                    books[i][5], books[i][6], books[i][7], books[i][8], 300, books[i][9]
+                    , books[i][10],  books[i][11], books[i][12]));
+        }
+
+        //pass book array
+        return (Book[]) Books.toArray();
     }
 }

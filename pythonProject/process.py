@@ -12,7 +12,7 @@ path = "chromedriver_win32\chromedriver.exe"
 options = Options()
 options.add_argument("--disable-blink-features=AutomationControlled")
 options.add_argument('--enable-print-browser')
-#options.add_argument("--headless")
+options.add_argument("--headless")
 driver = webdriver.Chrome(path, options=options)
 
 
@@ -26,6 +26,7 @@ password.send_keys("Carls3n_N0_1")
 password.send_keys(Keys.RETURN)
 
 titles = []
+id = []
 
 with open("books\\books.csv", "r", encoding="utf8") as file:
     csv_reader = csv.reader(file)
@@ -34,28 +35,18 @@ with open("books\\books.csv", "r", encoding="utf8") as file:
         if i==0:
             i+=1
             continue
-        if i<=45:
-            titles.append(row[10])
-        if i==5702:
-            titles.append(row[10])
-        if i==6677:
-            titles.append(row[10])
-        if i==6966:
-            titles.append(row[10])
-        if i==9032:
-            titles.append(row[10])
-        if i==9666:
+        if i<=45 or i in [5702, 6677, 6966, 9032, 9666]:
+            id.append(i)
             titles.append(row[10])
         i+=1
 
 with open("data.csv", "w", newline="") as file:
     csv_writer = csv.writer(file)
-    i = 1
+    i = 0
     for title in titles:
         try:
             print(i)
-            datum = []
-            datum.append(i)
+            datum = [id[i]]
             search = driver.find_element_by_name("q")
             search.send_keys(title)
             search.send_keys(Keys.RETURN)
@@ -92,9 +83,12 @@ with open("data.csv", "w", newline="") as file:
                 datum.append(genre.text)
             except:
                 datum.append("None")
+            rating = driver.find_element_by_xpath("//span[@itemprop='ratingValue']")
+            datum.append(rating.text)
+            print(rating.text)
             csv_writer.writerow(datum)
+
         except Exception as e:
             print(e)
         i+=1
-time.sleep(10)
 

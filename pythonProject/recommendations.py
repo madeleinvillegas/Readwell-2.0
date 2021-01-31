@@ -1,45 +1,22 @@
-import csv
-from math import sqrt
-import pickle
-
-
-# A dictionary of movie critics and their ratings of a small
-# set of movies
-critics={'Lisa Rose': {'Lady in the Water': 2.5, 'Snakes on a Plane': 3.5,
- 'Just My Luck': 3.0, 'Superman Returns': 3.5, 'You, Me and Dupree': 2.5,
- 'The Night Listener': 3.0},
-'Gene Seymour': {'Lady in the Water': 3.0, 'Snakes on a Plane': 3.5,
- 'Just My Luck': 1.5, 'Superman Returns': 5.0, 'The Night Listener': 3.0,
- 'You, Me and Dupree': 3.5},
-'Michael Phillips': {'Lady in the Water': 2.5, 'Snakes on a Plane': 3.0,
- 'Superman Returns': 3.5, 'The Night Listener': 4.0},
-'Claudia Puig': {'Snakes on a Plane': 3.5, 'Just My Luck': 3.0,
- 'The Night Listener': 4.5, 'Superman Returns': 4.0,
- 'You, Me and Dupree': 2.5},
-'Mick LaSalle': {'Lady in the Water': 3.0, 'Snakes on a Plane': 4.0,
- 'Just My Luck': 2.0, 'Superman Returns': 3.0, 'The Night Listener': 3.0,
- 'You, Me and Dupree': 2.0},
-'Jack Matthews': {'Lady in the Water': 3.0, 'Snakes on a Plane': 4.0,
- 'The Night Listener': 3.0, 'Superman Returns': 5.0, 'You, Me and Dupree': 3.5},
-'Toby': {'Snakes on a Plane':4.5,'You, Me and Dupree':1.0,'Superman Returns':4.0}}
-
-
+import pandas as pd
 
 def initialize():
     reviewers = {}
-    with open('ratings\\ratings.csv', "r", encoding="utf8") as file:
-        csv_reader = csv.reader(file)
-        i = 0
-        for row in csv_reader:
-            if i == 0:
-                i += 1
-                continue
-            if int(row[1]) not in reviewers.keys():
-                reviewers.update({int(row[1]): {}})
-                reviewers[int(row[1])].update({int(row[0]): int(row[2])})
-            else:
-                reviewers[int(row[1])].update({int(row[0]): int(row[2])})
-            i+=1
+
+    df = pd.read_csv("ratings\\ratings.csv")
+    i = 0
+    for row in df.itertuples():
+        if i == 0:
+            i += 1
+            continue
+        if not int(row[1]) <= 45 and int(row[1]) not in [5702, 6677, 6966, 9032, 9666]:
+            continue
+        if int(row[2]) not in reviewers.keys():
+            reviewers.update({int(row[2]): {}})
+            reviewers[int(row[2])].update({int(row[1]): int(row[3])})
+        else:
+            reviewers[int(row[2])].update({int(row[1]): int(row[3])})
+        i += 1
     return reviewers
 
 
@@ -77,7 +54,7 @@ def sim_pearson(prefs,p1,p2):
     pSum=sum([prefs[p1][it]*prefs[p2][it] for it in si])
     # Calculate Pearson score
     num=pSum-(sum1*sum2/n)
-    den=sqrt((sum1Sq-pow(sum1,2)/n)*(sum2Sq-pow(sum2,2)/n))
+    den=((sum1Sq-pow(sum1,2)/n)*(sum2Sq-pow(sum2,2)/n))**(1/2)
     if den==0: return 0
     r=num/den
     return r
@@ -164,11 +141,39 @@ def getRecommendedItems(prefs,itemMatch,user):
     rankings.reverse()
     return rankings
 
+def getSimilarItems(item):
+    reviews = initialize()
+    itemsim = calculateSimilarItems(reviews, 3)
+    recommendations = itemsim.get(item)
+    items = []
+    for recommendation in recommendations:
+        items.append(recommendation[1])
+    return items
 
-reviews = initialize()
-itemsim = calculateSimilarItems(reviews, 3)
-dictionary_data = {"a": 1, "b": 2}
-a_file = open("data.pkl", "wb")
-pickle. dump(itemsim, a_file)
-a_file. close()
+
+def getBooks():
+    df = pd.read_csv("data.csv")
+    data = []
+    for row in df.itertuples():
+        print(row[2])
+        book = []
+        items = getSimilarItems(int(row[1]))
+        book.append(row[2])
+        book.append(row[3])
+        book.append(row[5])
+        book.append(row[7])
+        book.append(row[4])
+        book.append(row[6])
+        book.append(row[9])
+        book.append(row[8])
+        book.append(row[10])
+        for row2 in df.itertuples():
+            if int(row2[1]) in items:
+                book.append(row2[2])
+        data.append(book)
+    return data
+
+#a_file = open("data.pkl", "wb")
+#pickle. dump(itemsim, a_file)
+#a_file. close()
 

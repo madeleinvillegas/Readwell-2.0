@@ -4,7 +4,7 @@ public class Book {
     public String title, author, publisher, language, datePublished, pages, genre, synopsis, price, rating;
     public Book recommended1, recommended2, recommended3;
 
-    public Book(String title, String author) {
+    public Book(String s10, String s9, String s8, String s7, String s6, String s5, String s4, String s3, String s2, int i, String s1, String s, String title, String author) {
         this.title = title;
         this.author = author;
     }

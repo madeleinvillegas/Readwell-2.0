@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.chaquo.python'
 }
 
 android {
@@ -12,6 +13,21 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+        python {
+            buildPython "C:\\Users\\User_K\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
+
+            pip {
+                // A pip requirement specifier, with or without a version number:
+                install "pandas"
+                install "numpy"
+                install "nltk"
+                install "scikit-learn"
+            }
+
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,6 +41,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            python.srcDir "src/main/python"
+        }
     }
 }
 
