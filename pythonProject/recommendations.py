@@ -1,4 +1,7 @@
+import csv
 from math import sqrt
+import pickle
+
 
 # A dictionary of movie critics and their ratings of a small
 # set of movies
@@ -19,6 +22,28 @@ critics={'Lisa Rose': {'Lady in the Water': 2.5, 'Snakes on a Plane': 3.5,
 'Jack Matthews': {'Lady in the Water': 3.0, 'Snakes on a Plane': 4.0,
  'The Night Listener': 3.0, 'Superman Returns': 5.0, 'You, Me and Dupree': 3.5},
 'Toby': {'Snakes on a Plane':4.5,'You, Me and Dupree':1.0,'Superman Returns':4.0}}
+
+
+
+def initialize():
+    reviewers = {}
+    with open('ratings\\ratings.csv', "r", encoding="utf8") as file:
+        csv_reader = csv.reader(file)
+        i = 0
+        for row in csv_reader:
+            if i == 0:
+                i += 1
+                continue
+            if int(row[1]) not in reviewers.keys():
+                reviewers.update({int(row[1]): {}})
+                reviewers[int(row[1])].update({int(row[0]): int(row[2])})
+            else:
+                reviewers[int(row[1])].update({int(row[0]): int(row[2])})
+            i+=1
+    return reviewers
+
+
+
 
 def sim_distance(prefs, person1, person2):
     # Get the list of shared_items
@@ -138,4 +163,12 @@ def getRecommendedItems(prefs,itemMatch,user):
     rankings.sort()
     rankings.reverse()
     return rankings
+
+
+reviews = initialize()
+itemsim = calculateSimilarItems(reviews, 3)
+dictionary_data = {"a": 1, "b": 2}
+a_file = open("data.pkl", "wb")
+pickle. dump(itemsim, a_file)
+a_file. close()
 

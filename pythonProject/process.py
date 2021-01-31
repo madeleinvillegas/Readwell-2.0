@@ -1,16 +1,20 @@
 import csv
 import time
-# Import the beautifulsoup
-# and request libraries of python.
-import requests
-from bs4 import BeautifulSoup as bs
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 path = "chromedriver_win32\chromedriver.exe"
-driver = webdriver.Chrome(path)
+
+options = Options()
+options.add_argument("--disable-blink-features=AutomationControlled")
+options.add_argument('--enable-print-browser')
+#options.add_argument("--headless")
+driver = webdriver.Chrome(path, options=options)
+
 
 data = []
 
@@ -21,34 +25,76 @@ email.send_keys("edric.hao@gmail.com")
 password.send_keys("Carls3n_N0_1")
 password.send_keys(Keys.RETURN)
 
-with open("BX-CSV-Dump\BX-Book-Ratings.csv", "r") as file:
+titles = []
+
+with open("books\\books.csv", "r", encoding="utf8") as file:
     csv_reader = csv.reader(file)
     i=0
     for row in csv_reader:
         if i==0:
             i+=1
             continue
-        data = row[0].split(";")
-        isbn = data[1].strip("\"\"")
-        search = driver.find_element_by_name("q")
-        search.send_keys(isbn)
-        search.send_keys(Keys.RETURN)
-        title = driver.find_element_by_id("bookTitle")
-        print(title.text)
-        authors = driver.find_elements_by_class_name("authorName")
-        for author in authors:
-            print(author.text)
-        text = driver.find_elements_by_class_name("row")
-        published = text[1].text
-        print(published)
-        text = driver.find_elements_by_xpath("//span[@itemprop='numberOfPages']")
-        pages = text[0].text
-        print(pages)
-        text = driver.find_elements_by_xpath("//div[@itemprop='inLanguage']")
-        language = text[0].text
-        print(language)
-        description = driver.find_elements_by_xpath("//div[@id='description']")
+        if i<=45:
+            titles.append(row[10])
+        if i==5702:
+            titles.append(row[10])
+        if i==6677:
+            titles.append(row[10])
+        if i==6966:
+            titles.append(row[10])
+        if i==9032:
+            titles.append(row[10])
+        if i==9666:
+            titles.append(row[10])
+        i+=1
 
+with open("data.csv", "w", newline="") as file:
+    csv_writer = csv.writer(file)
+    i = 1
+    for title in titles:
+        try:
+            print(i)
+            datum = []
+            datum.append(i)
+            search = driver.find_element_by_name("q")
+            search.send_keys(title)
+            search.send_keys(Keys.RETURN)
+            book = driver.find_element_by_class_name("bookTitle")
+            driver.get(book.get_attribute("href"))
+            element_present = EC.presence_of_element_located((By.CLASS_NAME, 'responsiveSiteFooter__linkListItem'))
+            WebDriverWait(driver, 5).until(element_present)
+            title = driver.find_element_by_id("bookTitle")
+            datum.append(title.text)
+            authors = driver.find_elements_by_class_name("authorName")
+            names = ""
+            for author in authors:
+                names = author.text + ";"
+            datum.append(names)
+            text = driver.find_elements_by_class_name("row")
+            published = text[1].text.strip("Published ").split(" by ")
+            datum.append(published[0])
+            datum.append(published[1])
+            text = driver.find_elements_by_xpath("//span[@itemprop='numberOfPages']")
+            pages = text[0].text
+            datum.append(pages)
+            text = driver.find_elements_by_xpath("//div[@itemprop='inLanguage']")
+            language = text[0].text
+            datum.append(language)
+            try:
+                button = driver.find_element_by_xpath("//a[@onclick='swapContent($(this));; return false;']")
+                button.click()
+            except:
+                pass
+            description = driver.find_element_by_xpath("//div[@id='description']")
+            datum.append(description.text.strip("(less)").replace("\n", "").replace("\t", "").replace("\r", ""))
+            try:
+                genre = driver.find_element_by_xpath("//a[@class='actionLinkLite bookPageGenreLink']")
+                datum.append(genre.text)
+            except:
+                datum.append("None")
+            csv_writer.writerow(datum)
+        except Exception as e:
+            print(e)
+        i+=1
 time.sleep(10)
-driver.quit()
 
