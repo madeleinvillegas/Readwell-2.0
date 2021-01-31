@@ -1,12 +1,14 @@
 package ph.edu.dlsu.readwell20;
 
 public class Book {
-    public String title, author, publisher, language, datePublished, pages, genre, synopsis, price, rating;
+    public String title, author, publisher, language, datePublished, pages, genre, synopsis, price, rating, thumbnail;
+    public int count = 0;
     public Book recommended1, recommended2, recommended3;
 
-    public Book(String title, String author) {
+    public Book(String title, String author, String thumbnail) {
         this.title = title;
         this.author = author;
+        this.thumbnail = thumbnail;
     }
 
     public Book(String title, String author, String publisher, String language, String datePublished,

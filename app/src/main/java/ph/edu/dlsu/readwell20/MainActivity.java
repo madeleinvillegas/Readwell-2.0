@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
-    public static int lastTab = 0;
+    public static int lastTab = 2;
     public static Stack<Book> cart;
 
     @Override

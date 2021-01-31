@@ -9,15 +9,13 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.Database;
 import ph.edu.dlsu.readwell20.R;
 
 public class CartFragment extends Fragment {
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
 
         ListView listView = root.findViewById(R.id.home_list);
