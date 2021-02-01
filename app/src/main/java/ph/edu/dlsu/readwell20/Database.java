@@ -106,7 +106,7 @@ public class Database extends SQLiteOpenHelper {
         //create new book and add to array list
         for(int i=0; i<books.length; i++){
             Books.add(new Book(books[i][0], books[i][1], books[i][2], books[i][3], books[i][4],
-                    books[i][5], books[i][6], books[i][7], books[i][8], 300, books[i][9]
+                    books[i][5], books[i][6], books[i][7], books[i][8], "300", books[i][9]
                     , books[i][10],  books[i][11], books[i][12]));
         }
         //pass book array
