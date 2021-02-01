@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import ph.edu.dlsu.readwell20.BookDetails;
+import ph.edu.dlsu.readwell20.MainActivity;
 import ph.edu.dlsu.readwell20.R;
 
 public class SearchFragment extends Fragment {
@@ -29,18 +30,24 @@ public class SearchFragment extends Fragment {
         return root;
     }
     public void searchTheBook() {
-        String whatToSearch = search.getText().toString();
-        if (TextUtils.isEmpty(whatToSearch)) {
-            Toast.makeText(getActivity(), "Please enter a keyword on the search bar", Toast.LENGTH_SHORT).show();
-        } else {
-            Python py = Python.getInstance();
-            final PyObject pyobj = py.getModule("search");
+        previousSearch = search.getText().toString();
+        MainActivity.lastTab = 1;
+        Intent intent = new Intent(getContext(), BookDetails.class);
+        startActivity(intent);
+
+//        String whatToSearch = search.getText().toString();
+//        if (TextUtils.isEmpty(whatToSearch)) {
+//            Toast.makeText(getActivity(), "Please enter a title on the search bar", Toast.LENGTH_SHORT).show();
+//        } else {
+            // Chaquopy stuff that doesn't work yet
+//            Python py = Python.getInstance();
+//            final PyObject pyobj = py.getModule("main");
 //            List<PyObject> obj = pyobj.callAttr("search", whatToSearch).asList();
 //            Intent intent = new Intent(getActivity(), Book.class);
 //            String[] data = {obj.get(0).toString(), obj.get(1).toString(), obj.get(2).toString(),
 //                            obj.get(3).toString(), obj.get(4).toString(), obj.get(5).toString()};
 //            intent.putExtra("data", data);
-            startActivity(intent);
-        }
+//            startActivity(intent);
+//        }
     }
 }

@@ -29,6 +29,25 @@ public class Book {
         this.recommended2 = recommended2;
         this.recommended3 = recommended3;
     }
+
+    public Book(String title, String author, String publisher, String language, String datePublished,
+                String pages, String genre, String synopsis, String price, String rating,
+                String recommended1, String recommended2, String recommended3) {
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.language = language;
+        this.datePublished = datePublished;
+        this.pages = pages;
+        this.genre = genre;
+        this.synopsis = synopsis;
+        this.price = price;
+        this.rating = rating;
+//        this.recommended1 = recommended1;
+//        this.recommended2 = recommended2;
+//        this.recommended3 = recommended3;
+    }
+
     public Book(String title, String author, String publisher, String language, String datePublished,
                 String pages, String genre, String synopsis, String price, String rating, String thumbnail) {
         this.title = title;

@@ -37,6 +37,5 @@ public class BookDetails extends AppCompatActivity {
         sugg3Title = findViewById(R.id.book_title_sug3);
         sugg3Author = findViewById(R.id.book_author_sug3);
         addToCart = findViewById(R.id.cart);
-        MainActivity.lastTab = 1;
     }
 }

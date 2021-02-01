@@ -2,6 +2,7 @@ package ph.edu.dlsu.readwell20.ui.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,8 @@ import androidx.annotation.Nullable;
 import com.squareup.picasso.Picasso;
 
 import ph.edu.dlsu.readwell20.Book;
+import ph.edu.dlsu.readwell20.BookDetails;
+import ph.edu.dlsu.readwell20.MainActivity;
 import ph.edu.dlsu.readwell20.R;
 
 public class HomeAdapter extends ArrayAdapter<Book> {
@@ -36,9 +41,18 @@ public class HomeAdapter extends ArrayAdapter<Book> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(resource, parent, false);
 
+        RelativeLayout item = convertView.findViewById(R.id.home_item);
+        item.setOnClickListener(v -> {
+            MainActivity.lastTab = 0;
+            Intent intent = new Intent(context, BookDetails.class);
+            context.startActivity(intent);
+        });
+        TextView title = convertView.findViewById(R.id.home_item_title);
+        title.setText(getItem(position).title);
+        TextView author = convertView.findViewById(R.id.home_item_author);
+        author.setText(getItem(position).author);
         ImageView imageView = convertView.findViewById(R.id.home_item_cover);
-        String url = "https://static.wikia.nocookie.net/meme/images/d/db/Rick-astley.png/revision/latest/top-crop/width/360/height/450?cb=20200713010539";
-        Picasso.get().load(url).resize(150, 150).centerCrop().into(imageView);
+        Picasso.get().load(getItem(position).thumbnail).resize(100, 120).centerCrop().into(imageView);
         title = findViewById(R.id.home_item_title);
         author = findViewById(R.id.home_item_author);
 
