@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".BookDetails"
     tools:ignore="MissingConstraints">
     <!--    Data we have: \Title, \author/s, publisher, language, date published,
@@ -22,16 +20,16 @@
     <TextView
         android:id="@+id/book_title"
         android:layout_width="370dp"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_toRightOf="@+id/book_image"
         android:gravity="center_horizontal"
-        android:text="A really really long book title and I don't know what the title is so yeah"
+        android:text="Book title"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         tools:ignore="MissingConstraints" />
 
@@ -51,10 +49,10 @@
 
     <TextView
         android:id="@+id/book_rating"
-        android:layout_width="40dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_author"
-        android:text="4.99"
+        android:text="4.9990"
         android:layout_toRightOf="@+id/book_image"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
@@ -107,11 +105,11 @@
 
     <TextView
         android:id="@+id/book_details"
-        android:layout_width="150dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_synopsis"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="40dp"
         android:text="Publisher:\nLanguage:\nDate published:\nPages:"
         android:textSize="16dp" />
 
@@ -129,7 +127,7 @@
         android:layout_width="400dp"
         android:layout_margin="10dp"
         android:layout_height="70dp"
-        android:layout_below="@+id/book_details"
+        android:layout_below="@+id/other_book_details"
         android:background="#bdbdc1"
         android:textSize="20dp"
         android:text="Add to Cart"/>

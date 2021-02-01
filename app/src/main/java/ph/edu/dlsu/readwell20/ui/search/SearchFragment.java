@@ -9,6 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -75,9 +81,10 @@ public class SearchFragment extends Fragment {
         Intent intent = new Intent(getContext(), BookDetails.class);
         startActivity(intent);
 
-//        if (TextUtils.isEmpty(previousSearch)) {
-//            Toast.makeText(getActivity(), "Please enter a keyword on the search bar", Toast.LENGTH_SHORT).show();
-//        } else {
+        if (TextUtils.isEmpty(previousSearch)) {
+            Toast.makeText(getActivity(), "Please enter a keyword on the search bar", Toast.LENGTH_SHORT).show();
+        }
+//        else {
 //            // Chaquopy stuff that doesn't work yet
 //            Python py = Python.getInstance();
 //            final PyObject pyobj = py.getModule("search");
