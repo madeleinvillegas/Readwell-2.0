@@ -92,7 +92,6 @@ public class UserLogin extends AppCompatActivity {
                 break;
             }
         }
-
         toast.show();
         cursor.close();
         data.close();

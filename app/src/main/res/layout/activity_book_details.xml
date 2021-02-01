@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_synopsis"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
         android:text="Publisher:\nLanguage:\nDate published:\nPages:"
         android:textSize="16dp" />
 
@@ -122,7 +122,6 @@
         android:layout_toRightOf="@+id/book_details"
         android:layout_below="@+id/book_synopsis"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
         android:text="Publisher:\nLanguage:\nDate published:\nPages:"
         android:textSize="16dp" />
     <Button
@@ -134,10 +133,19 @@
         android:background="#bdbdc1"
         android:textSize="20dp"
         android:text="Add to Cart"/>
-    <TableRow
+    <TextView
+        android:id="@+id/reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cart"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Customers Who Bought This Also Bought"
+        android:textSize="18dp" />
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/cart"
+        android:layout_below="@+id/reco"
         android:layout_marginStart="0px"
         android:layout_marginLeft="0px"
         android:layout_marginTop="0px"
@@ -147,25 +155,89 @@
         android:gravity="center">
 
         <ImageView
-            android:id="@+id/book_sug1"
+            android:id="@+id/book_image_sug1"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:layout_marginTop="2dp"
+            android:layout_margin="10dp"
             android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/book_title_sug1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_image_sug1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Title"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/book_author_sug1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_title_sug1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Author"
+            android:textSize="14dp" />
 
         <ImageView
-            android:id="@+id/book_sug2"
+            android:id="@+id/book_image_sug2"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:layout_marginTop="2dp"
-            android:scaleType="centerCrop" />
-
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:layout_toRightOf="@+id/book_image_sug1"/>
+        <TextView
+            android:id="@+id/book_title_sug2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_image_sug2"
+            android:layout_toRightOf="@+id/book_image_sug1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Title"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/book_author_sug2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_title_sug2"
+            android:layout_toRightOf="@+id/book_image_sug1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Author"
+            android:textSize="14dp" />
         <ImageView
-            android:id="@+id/book_sug3"
+            android:id="@+id/book_image_sug3"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:layout_marginTop="2dp"
-            android:scaleType="centerCrop" />
-    </TableRow>
-
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:layout_toRightOf="@+id/book_image_sug2"/>
+        <TextView
+            android:id="@+id/book_title_sug3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_image_sug3"
+            android:layout_toRightOf="@+id/book_image_sug2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Title"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/book_author_sug3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_title_sug3"
+            android:layout_toRightOf="@+id/book_image_sug2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Author"
+            android:textSize="14dp" />
+    </RelativeLayout>
 </RelativeLayout>
