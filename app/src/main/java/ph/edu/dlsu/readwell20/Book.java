@@ -44,4 +44,11 @@ public class Book {
         this.rating = rating;
         this.thumbnail = thumbnail;
     }
+
+    public static Book replicate(Book book) {
+        return new Book(book.title, book.author, book.publisher, book.language,
+                book.datePublished, book.pages, book.genre, book.synopsis,
+                book.price, book.rating, book.thumbnail, book.recoTitle1,
+                book.recoTitle2, book.recoTitle3);
+    }
 }

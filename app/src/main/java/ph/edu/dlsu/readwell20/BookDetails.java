@@ -1,12 +1,16 @@
 package ph.edu.dlsu.readwell20;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import android.os.Bundle;
 
 import java.util.Objects;
+
+import ph.edu.dlsu.readwell20.ui.cart.CartFragment;
 
 public class BookDetails extends AppCompatActivity {
     public static Book forViewing;
@@ -15,6 +19,7 @@ public class BookDetails extends AppCompatActivity {
 
     private ImageView bookImage, suggestion1, suggestion2, suggestion3;
     private Button addToCart;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +44,7 @@ public class BookDetails extends AppCompatActivity {
         sugg3Title = findViewById(R.id.book_title_sug3);
         sugg3Author = findViewById(R.id.book_author_sug3);
         addToCart = findViewById(R.id.cart);
+        addToCart.setOnClickListener(v -> CartFragment.cartStack.push(Book.replicate(forViewing)));
         title.setText(forViewing.title);
         author.setText(forViewing.author);
         rating.setText(forViewing.rating + "⭐");
