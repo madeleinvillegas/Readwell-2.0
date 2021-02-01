@@ -9,7 +9,6 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.Database;
 import ph.edu.dlsu.readwell20.R;
 
@@ -21,7 +20,7 @@ public class CartFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
 
         ListView listView = root.findViewById(R.id.home_list);
-        CartAdapter adapter = new CartAdapter(requireActivity(), R.layout.fragment_cart_item, Database.getSampleBooks());
+        CartAdapter adapter = new CartAdapter(requireActivity(), R.layout.fragment_cart_item, Database.getSampleBooks(getContext()));
         listView.setAdapter(adapter);
 
         return root;

@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         ListView listView = root.findViewById(R.id.home_list);
-        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, Database.getSampleBooks());
+        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, Database.getSampleBooks(getContext()));
         listView.setAdapter(adapter);
 
 

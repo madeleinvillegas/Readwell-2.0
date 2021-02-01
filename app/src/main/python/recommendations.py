@@ -1,9 +1,11 @@
 import pandas as pd
 
+from os.path import dirname, join
+
 def initialize():
     reviewers = {}
 
-    df = pd.read_csv("ratings\\ratings.csv")
+    df = pd.read_csv(join(dirname(__file__), "ratings/ratings.csv"))
     i = 0
     for row in df.itertuples():
         if i == 0:
@@ -152,7 +154,7 @@ def getSimilarItems(item):
 
 
 def getBooks():
-    df = pd.read_csv("data.csv")
+    df = pd.read_csv(join(dirname(__file__), "data.csv"))
     data = []
     for row in df.itertuples():
         print(row[2])
@@ -176,4 +178,3 @@ def getBooks():
 #a_file = open("data.pkl", "wb")
 #pickle. dump(itemsim, a_file)
 #a_file. close()
-
