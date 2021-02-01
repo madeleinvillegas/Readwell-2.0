@@ -177,7 +177,7 @@ def process():
     save.to_csv('preprocess.csv', header=None, index=False)
 
 def getBooks():
-    books = pd.read_csv(join(dirname(__file__), "preprocess.csv"))
+    books = pd.read_csv(join(dirname(__file__), "data.csv"))
     books = books.values.tolist()
     return books
 

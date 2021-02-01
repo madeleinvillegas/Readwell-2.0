@@ -53,8 +53,8 @@ public class HomeAdapter extends ArrayAdapter<Book> {
         author.setText(getItem(position).author);
         ImageView imageView = convertView.findViewById(R.id.home_item_cover);
         Picasso.get().load(getItem(position).thumbnail).resize(100, 120).centerCrop().into(imageView);
-        title = convertView.findViewById(R.id.home_item_title);
-        author = convertView.findViewById(R.id.home_item_author);
+//        title = findViewById(R.id.home_item_title);
+//        author = findViewById(R.id.home_item_author);
 
         return convertView;
     }
