@@ -52,25 +52,18 @@ public class HomeFragment extends Fragment {
 
         Book[] books = new Book[tempBooks.length];
         for (int i = 0; i < tempBooks.length; i++) {
-            books[i] = new Book(String.valueOf(tempBooks[i][1]), String.valueOf(tempBooks[i][2]),String.valueOf(tempBooks[i][4]),
-                    String.valueOf(tempBooks[i][6]), String.valueOf(tempBooks[i][3]),
-                    String.valueOf(tempBooks[i][5]), String.valueOf(tempBooks[i][8]),
-                    String.valueOf(tempBooks[i][7]), String.valueOf(tempBooks[i][10]),
-                    String.valueOf(tempBooks[i][9]), String.valueOf(tempBooks[i][11]),
+            String tempAuthor = String.valueOf(tempBooks[i][2]);
+            String author = tempAuthor.endsWith(";") ? tempAuthor.substring(0, tempAuthor.length() - 1) : tempAuthor;
+            books[i] = new Book(String.valueOf(tempBooks[i][1]), author, String.valueOf(tempBooks[i][3]),
+                    String.valueOf(tempBooks[i][4]), String.valueOf(tempBooks[i][5]),
+                    String.valueOf(tempBooks[i][6]), String.valueOf(tempBooks[i][7]),
+                    String.valueOf(tempBooks[i][8]), String.valueOf(tempBooks[i][9]),
+                    String.valueOf(tempBooks[i][10]), String.valueOf(tempBooks[i][11]),
                     String.valueOf(tempBooks[i][12]), String.valueOf(tempBooks[i][13]), String.valueOf(tempBooks[i][14]));
         }
 
         //pass book array
         return books;
-
-//        return new Book[] {
-//                new Book("1984", "George Orwell", "https://covers.openlibrary.org/b/id/8579180-L.jpg"),
-//                new Book("To Kill a Mockingbird", "Harper Lee", "https://covers.openlibrary.org/b/id/8410894-L.jpg"),
-//                new Book("The Great Gatsby", "F. Scott Fitzgerald", "https://covers.openlibrary.org/b/id/8458093-L.jpg"),
-//                new Book("Memoirs of a Geisha", "Arthur Golden", "https://covers.openlibrary.org/b/id/10541425-L.jpg"),
-//                new Book("LIFE OF PI", "Yann Martel", "https://covers.openlibrary.org/b/id/529809-L.jpg"),
-//                new Book("The Fault in Our Stars", "John Green", "https://covers.openlibrary.org/b/id/7285167-L.jpg")
-//        };
     }
 
     public void goToViewDetails() {
