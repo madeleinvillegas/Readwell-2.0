@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.chaquo.python.PyObject;
@@ -17,12 +16,14 @@ import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.R;
 
 public class HomeFragment extends Fragment {
+    public static Book[] books;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        books = getSampleBooks();
         ListView listView = root.findViewById(R.id.home_list);
-        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, getSampleBooks());
+        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, books);
         listView.setAdapter(adapter);
 
         return root;

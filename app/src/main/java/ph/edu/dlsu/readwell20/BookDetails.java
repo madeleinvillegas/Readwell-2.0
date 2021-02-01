@@ -7,10 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
 import ph.edu.dlsu.readwell20.ui.cart.CartFragment;
+import ph.edu.dlsu.readwell20.ui.cart.CartStack;
+import ph.edu.dlsu.readwell20.ui.home.HomeFragment;
 
 public class BookDetails extends AppCompatActivity {
     public static Book forViewing;
@@ -44,7 +49,17 @@ public class BookDetails extends AppCompatActivity {
         sugg3Title = findViewById(R.id.book_title_sug3);
         sugg3Author = findViewById(R.id.book_author_sug3);
         addToCart = findViewById(R.id.cart);
-        addToCart.setOnClickListener(v -> CartFragment.cartStack.push(Book.replicate(forViewing)));
+
+        if (CartFragment.cartStack.contains(forViewing)) {
+            addToCart.setText("Added");
+            addToCart.setClickable(false);
+        }
+        else addToCart.setOnClickListener(v -> {
+            addToCart.setText("Added");
+            addToCart.setClickable(false);
+            CartFragment.cartStack.push(forViewing);
+        });
+
         title.setText(forViewing.title);
         author.setText(forViewing.author);
         rating.setText(forViewing.rating + "⭐");
@@ -55,12 +70,23 @@ public class BookDetails extends AppCompatActivity {
         others.setText(forViewing.publisher + "\n" + forViewing.language + "\n" + forViewing.datePublished
                 + "\n" + forViewing.pages);
         new DownloadImageTask((ImageView) findViewById(R.id.book_image)).execute(forViewing.thumbnail);
-        sugg1Title.setText(forViewing.recoTitle1);
-        sugg2Title.setText(forViewing.recoTitle2);
-        sugg3Title.setText(forViewing.recoTitle3);
-        sugg1Author.setText(forViewing.recoAuthor1);
-        sugg2Author.setText(forViewing.recoAuthor2);
-        sugg3Author.setText(forViewing.recoAuthor3);
+
+        for (Book temp : HomeFragment.books) {
+            if (temp.title.equals(forViewing.recoTitle1)) {
+                Picasso.get().load(temp.thumbnail).resize(100, 120).centerCrop().into(suggestion1);
+                sugg1Title.setText(temp.title);
+                sugg1Author.setText(temp.author);
+            } else if (temp.title.equals(forViewing.recoTitle2)) {
+                Picasso.get().load(temp.thumbnail).resize(100, 120).centerCrop().into(suggestion2);
+                sugg2Title.setText(temp.title);
+                sugg2Author.setText(temp.author);
+            } else if (temp.title.equals(forViewing.recoTitle3)) {
+                Picasso.get().load(temp.thumbnail).resize(100, 120).centerCrop().into(suggestion3);
+                sugg3Title.setText(temp.title);
+                sugg3Author.setText(temp.author);
+            }
+        }
+
         // Not sure if this part works so nakacomment muna
 //        new DownloadImageTask((ImageView) findViewById(R.id.book_image_sug1)).execute(forViewing.recoImg1);
 //        new DownloadImageTask((ImageView) findViewById(R.id.book_image_sug2)).execute(forViewing.recoImg2);
