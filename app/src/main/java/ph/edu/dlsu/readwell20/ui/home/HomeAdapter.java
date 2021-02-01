@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,8 @@ import ph.edu.dlsu.readwell20.R;
 public class HomeAdapter extends ArrayAdapter<Book> {
     private final Context context;
     private final int resource;
+    private TextView title, author;
+
 
     public HomeAdapter(@NonNull Context context, int resource, @NonNull Book[] objects) {
         super(context, resource, objects);
@@ -36,6 +39,8 @@ public class HomeAdapter extends ArrayAdapter<Book> {
         ImageView imageView = convertView.findViewById(R.id.home_item_cover);
         String url = "https://static.wikia.nocookie.net/meme/images/d/db/Rick-astley.png/revision/latest/top-crop/width/360/height/450?cb=20200713010539";
         Picasso.get().load(url).resize(150, 150).centerCrop().into(imageView);
+        title = findViewById(R.id.home_item_title);
+        author = findViewById(R.id.home_item_author);
 
         return convertView;
     }

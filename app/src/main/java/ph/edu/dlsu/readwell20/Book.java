@@ -5,10 +5,7 @@ public class Book {
     public int count = 0;
     public Book recommended1, recommended2, recommended3;
 
-    public Book(String s10, String s9, String s8, String s7, String s6, String s5, String s4, String s3, String s2, String i, String s1, String s, String title, String author) {
-        this.title = title;
-        this.author = author;
-    }
+
     public Book(String title, String author, String thumbnail) {
         this.title = title;
         this.author = author;
@@ -33,7 +30,7 @@ public class Book {
         this.recommended3 = recommended3;
     }
     public Book(String title, String author, String publisher, String language, String datePublished,
-                String pages, String genre, String synopsis, String price, String rating) {
+                String pages, String genre, String synopsis, String price, String rating, String thumbnail) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -44,5 +41,6 @@ public class Book {
         this.synopsis = synopsis;
         this.price = price;
         this.rating = rating;
+        this.thumbnail = thumbnail;
     }
 }

@@ -154,7 +154,7 @@ def getSimilarItems(item):
 
 
 def process():
-    df = pd.read_csv(join(dirname(__file__), "data.csv"))
+    df = pd.read_csv(join(dirname(__file__), "data.csv")).astype(str) 
     data = []
     for row in df.itertuples():
         print(row[2])
@@ -181,5 +181,3 @@ def getBooks():
     books = books.values.tolist()
     return books
 
-
-process()
