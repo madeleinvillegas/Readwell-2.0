@@ -18,7 +18,7 @@ android {
         }
         python {
 //            buildPython "C:\\Users\\User_K\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
-            buildPython "Users/madelein.villegas/AndroidStudioProjects/Readwell-2.0/pythonProject/venv/Scripts/python.exe"
+            buildPython "/usr/local/bin/python3.9"
             pip {
                 // A pip requirement specifier, with or without a version number:
                 install "pandas"

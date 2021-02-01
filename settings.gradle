@@ -1,3 +1,2 @@
 include ':app'
-include ':lib'
 rootProject.name = "Readwell2.0"

@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".BookDetails"
     tools:ignore="MissingConstraints">
-    <!--    Data we have: Title, author/s, publisher, language, date published,
-        pages, subjects/genre, synopsis, price, rating
+    <!--    Data we have: \Title, \author/s, publisher, language, date published,
+        pages, \subjects/genre, \synopsis, \price, \rating
 -->
     <ImageView
         android:id="@+id/book_image"
@@ -16,25 +16,28 @@
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:layout_marginTop="2dp"
+        android:layout_marginLeft="10dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/book_title"
+        android:layout_width="370dp"
+        android:layout_height="67dp"
+        android:layout_marginLeft="3dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:text="A really really long book title and I don't know what the title is so yeah"
-        android:textStyle="bold"
-        android:textAlignment="center"
         android:layout_toRightOf="@+id/book_image"
-        android:textSize="18dp"
         android:gravity="center_horizontal"
+        android:text="A really really long book title and I don't know what the title is so yeah"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:textStyle="bold"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/book_author"
+        android:textColor="#000000"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_title"
@@ -48,48 +51,93 @@
 
     <TextView
         android:id="@+id/book_rating"
-        android:layout_width="230dp"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_author"
-        android:text="Rating"
+        android:text="4.99"
         android:layout_toRightOf="@+id/book_image"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:textSize="17dp"
+
         />
     <TextView
         android:id="@+id/book_genre"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_author"
+        android:text="Genre"
+        android:layout_toRightOf="@+id/book_rating"
+        android:textSize="17dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:id="@+id/book_price"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_rating"
-        android:text="Genre"
+        android:text="Price"
         android:layout_toRightOf="@+id/book_image"
         android:textSize="17dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         />
-    <Button
-        android:id="@+id/cart"
-        android:layout_width="110dp"
-        android:layout_margin="10dp"
-        android:layout_height="70dp"
+    <TextView
+        android:id="@+id/synop"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/book_image"
-        android:background="#bdbdc1"
-        android:text="Add to \nCart"/>
+        android:layout_margin="10dp"
+        android:layout_marginTop="61dp"
+        android:text="Synopsis"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="19dp" />
 
     <TextView
         android:id="@+id/book_synopsis"
-        android:layout_width="4000dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cart"
-        android:layout_margin="10dp"
-        android:layout_marginTop="61dp"
+        android:layout_below="@+id/synop"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:text="Synopsis is \nhere\n\n\n\n\njust in case mahaba"
         android:textSize="16dp" />
 
+    <TextView
+        android:id="@+id/book_details"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_synopsis"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="50dp"
+        android:text="Publisher:\nLanguage:\nDate published:\nPages:"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/other_book_details"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/book_details"
+        android:layout_below="@+id/book_synopsis"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:text="Publisher:\nLanguage:\nDate published:\nPages:"
+        android:textSize="16dp" />
+    <Button
+        android:id="@+id/cart"
+        android:layout_width="400dp"
+        android:layout_margin="10dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/book_details"
+        android:background="#bdbdc1"
+        android:textSize="20dp"
+        android:text="Add to Cart"/>
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/book_synopsis"
+        android:layout_below="@+id/cart"
         android:layout_marginStart="0px"
         android:layout_marginLeft="0px"
         android:layout_marginTop="0px"
