@@ -3,8 +3,8 @@ package ph.edu.dlsu.readwell20;
 public class Book {
     public String title, author, publisher, language, datePublished, pages, genre, synopsis, price, rating, thumbnail;
     public int count = 0;
-    public String recommended1, recommended2, recommended3;
-
+    public String recoTitle1, recoTitle2, recoTitle3;
+    public String recoImg1, recoAuthor1, recoImg2, recoAuthor2, recoImg3, recoAuthor3;
     public Book(String title, String author, String thumbnail) {
         this.title = title;
         this.author = author;
@@ -25,9 +25,9 @@ public class Book {
         this.price = price;
         this.rating = rating;
         this.thumbnail = thumbnail;
-        this.recommended1 = recommended1;
-        this.recommended2 = recommended2;
-        this.recommended3 = recommended3;
+        this.recoTitle1 = recommended1;
+        this.recoTitle2 = recommended2;
+        this.recoTitle3 = recommended3;
     }
 
     public Book(String title, String author, String publisher, String language, String datePublished,
