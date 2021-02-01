@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100px"
         android:gravity="center"
-        android:text="Search For A Book By Using Title Below"
+        android:text="Search For A Book By Entering a Keyword"
         android:textSize="24sp" />
 
     <EditText

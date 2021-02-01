@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+from os.path import dirname, join
 
 def tf_idf(search_keys, dataframe, label):
     tfidf_vectorizer = TfidfVectorizer()
@@ -29,7 +30,7 @@ def cos_similarity(search_query_weights, tfidf_weights_matrix):
 
 
 def load_data(search):
-    dataframe = pd.read_csv("data.csv")
+    dataframe = pd.read_csv(join(dirname(__file__), "data.csv"))
     data = []
     for row in dataframe.itertuples():
         document = ""
@@ -54,9 +55,10 @@ def load_data(search):
     books = []
     for result in results:
         if result != 0:
-            books.append(dataframe.iloc[result].iloc[1])
+            books.append(dataframe.iloc[result].tolist()[1:])
     return books
 
+print(load_data("Harry"))
 
 
 
