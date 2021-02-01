@@ -160,15 +160,15 @@ def process():
         print(row[2])
         book = []
         items = getSimilarItems(int(row[1]))
-        book.append(row[2])
-        book.append(row[3])
-        book.append(row[5])
-        book.append(row[7])
-        book.append(row[4])
-        book.append(row[6])
-        book.append(row[9])
-        book.append(row[8])
-        book.append(row[10])
+        book.append(str(row[2]))
+        book.append(str(row[3]))
+        book.append(str(row[5]))
+        book.append(str(row[7]))
+        book.append(str(row[4]))
+        book.append(str(row[6]))
+        book.append(str(row[9]))
+        book.append(str(row[8]))
+        book.append(str(row[10]))
         for row2 in df.itertuples():
             if int(row2[1]) in items:
                 book.append(row2[2])
@@ -180,3 +180,6 @@ def getBooks():
     books = pd.read_csv(join(dirname(__file__), "preprocess.csv"))
     books = books.values.tolist()
     return books
+
+
+process()
