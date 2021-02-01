@@ -62,7 +62,7 @@ public class SearchFragment extends Fragment {
         //convert return value to java
         Object[][] tempBooks = obj.toJava(Object[][].class);
         if(tempBooks.length==0){
-            Toast.makeText(getActivity(), "Please enter a keyword on the search bar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please enter a keyword on the search bar 1", Toast.LENGTH_SHORT).show();
         }
         else{
             BookDetails.forViewing = new Book(String.valueOf(tempBooks[0][0]), String.valueOf(tempBooks[0][1]),String.valueOf(tempBooks[0][3]),
@@ -71,18 +71,14 @@ public class SearchFragment extends Fragment {
                     String.valueOf(tempBooks[0][6]), String.valueOf(tempBooks[0][9]),
                     String.valueOf(tempBooks[0][8]), String.valueOf(tempBooks[0][10]),
                     String.valueOf(tempBooks[0][11]), String.valueOf(tempBooks[0][12]), String.valueOf(tempBooks[0][13]));
+            MainActivity.lastTab = 1;
+            Intent intent = new Intent(getContext(), BookDetails.class);
+            startActivity(intent);
         }
 
 
-
-
-
-        MainActivity.lastTab = 1;
-        Intent intent = new Intent(getContext(), BookDetails.class);
-        startActivity(intent);
-
         if (TextUtils.isEmpty(previousSearch)) {
-            Toast.makeText(getActivity(), "Please enter a keyword on the search bar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please enter a keyword on the search bar 2", Toast.LENGTH_SHORT).show();
         }
 //        else {
 //            // Chaquopy stuff that doesn't work yet

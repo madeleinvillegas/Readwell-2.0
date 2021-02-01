@@ -18,11 +18,11 @@ android {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
         python {
-//            buildPython "C:\\Users\\User_K\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
+            buildPython "C:\\Users\\User_K\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
 //            buildPython "/usr/local/bin/python3.9"
 //            buildPython "C:\\Users\\User_K\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
-            buildPython "/usr/local/bin/python3.9"
-            buildPython "C:\\Users\\Keima\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+            //buildPython "/usr/local/bin/python3.9"
+            //buildPython "C:\\Users\\Keima\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
             pip {
                 // A pip requirement specifier, with or without a version number:
                 install "pandas"
