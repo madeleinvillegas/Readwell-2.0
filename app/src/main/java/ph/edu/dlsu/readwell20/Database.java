@@ -110,8 +110,15 @@ public class Database extends SQLiteOpenHelper {
                     books[i][5], books[i][6], books[i][7], books[i][8], 300, books[i][9]
                     , books[i][10],  books[i][11], books[i][12]));
         }
-
         //pass book array
         return (Book[]) Books.toArray();
+//        return new Book[] {
+//                new Book("1984", "George Orwell", "https://covers.openlibrary.org/b/id/8579180-L.jpg"),
+//                new Book("To Kill a Mockingbird", "Harper Lee", "https://covers.openlibrary.org/b/id/8410894-L.jpg"),
+//                new Book("The Great Gatsby", "F. Scott Fitzgerald", "https://covers.openlibrary.org/b/id/8458093-L.jpg"),
+//                new Book("Memoirs of a Geisha", "Arthur Golden", "https://covers.openlibrary.org/b/id/10541425-L.jpg"),
+//                new Book("LIFE OF PI", "Yann Martel", "https://covers.openlibrary.org/b/id/529809-L.jpg"),
+//                new Book("The Fault in Our Stars", "John Green", "https://covers.openlibrary.org/b/id/7285167-L.jpg")
+//        };
     }
 }

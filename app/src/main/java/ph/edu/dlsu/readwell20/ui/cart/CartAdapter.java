@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.squareup.picasso.Picasso;
 
 import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.R;
@@ -25,16 +28,32 @@ public class CartAdapter extends ArrayAdapter<Book> {
         this.resource = resource;
     }
 
-    @SuppressLint("ViewHolder")
+    @SuppressLint({"ViewHolder", "SetTextI18n"})
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(resource, parent, false);
 
-        TextView text = convertView.findViewById(R.id.home_item_title);
-        text.setText(getItem(position).title);
-        ImageView imageView = convertView.findViewById(R.id.home_item_cover);
-//        Picasso.get().load("https://covers.openlibrary.org/b/id/8739161-L.jpg").resize(150, 150).centerCrop().into(imageView);
+        TextView title = convertView.findViewById(R.id.cart_item_title);
+        title.setText(getItem(position).title);
+        TextView author = convertView.findViewById(R.id.cart_item_author);
+        author.setText(getItem(position).author);
+        TextView count = convertView.findViewById(R.id.cart_item_count);
+        count.setText(Integer.toString(getItem(position).count));
+        ImageView imageView = convertView.findViewById(R.id.cart_item_cover);
+        Picasso.get().load(getItem(position).thumbnail).resize(100, 120).centerCrop().into(imageView);
+
+        Button btnAdd = convertView.findViewById(R.id.add_button);
+        btnAdd.setOnClickListener(v -> {
+            getItem(position).count++;
+            count.setText(Integer.toString(getItem(position).count));
+        });
+        Button btnMinus = convertView.findViewById(R.id.minus_button);
+        btnMinus.setOnClickListener(v -> {
+            getItem(position).count--;
+            count.setText(Integer.toString(getItem(position).count));
+        });
+
         return convertView;
     }
 }

@@ -1,40 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="60px">
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <LinearLayout
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="+"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/cart_item_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/minus_button"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="-"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/home_item_cover"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/cart_item_cover"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@+id/counter"
+        android:layout_toRightOf="@+id/counter"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/home_item_title"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_toEndOf="@+id/home_item_cover"
-        android:layout_toRightOf="@+id/home_item_cover"
-        android:text="bookTitle"
-        android:textSize="24sp" />
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@+id/cart_item_cover"
+        android:layout_toRightOf="@+id/cart_item_cover"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/home_item_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/home_item_title"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="25dp"
-        android:layout_toEndOf="@+id/home_item_cover"
-        android:layout_toRightOf="@+id/home_item_cover"
-        android:text="bookAuthor" />
+        <TextView
+            android:id="@+id/cart_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bookTitle"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/cart_item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="bookAuthor" />
+    </LinearLayout>
 
 </RelativeLayout>

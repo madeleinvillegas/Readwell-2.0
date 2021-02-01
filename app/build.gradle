@@ -9,6 +9,22 @@ android {
 
     defaultConfig {
         applicationId "ph.edu.dlsu.readwell20"
+        //give source folder to python scripts
+        sourceSets{
+            main{
+                python{
+                    srcDirs = ["src/main/python"]
+                }
+            }
+        }
+        //install necessary packages
+        python{
+            pip{
+                install "numpy"
+                install "pandas"
+                install "sklearn"
+            }
+        }
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -17,8 +33,8 @@ android {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
         python {
-            buildPython "C:\\Users\\User_K\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
-
+//            buildPython "C:\\Users\\User_K\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
+//            buildPython "Users/madelein.villegas/AndroidStudioProjects/Readwell-2.0/pythonProject/venv/Scripts/pythonw.exe"
             pip {
                 // A pip requirement specifier, with or without a version number:
                 install "pandas"
@@ -30,6 +46,16 @@ android {
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //add abi Filters
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+        //path to python in venv of Description to ensure the imports will work
+        python{
+            // Replace path
+            buildPython "/Users/madelein.villegas/AndroidStudioProjects/Readwell-2.0/pythonProject/venv/Scripts/python.exe"
+        }
     }
 
     buildTypes {
