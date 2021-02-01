@@ -153,7 +153,7 @@ def getSimilarItems(item):
     return items
 
 
-def getBooks():
+def process():
     df = pd.read_csv(join(dirname(__file__), "data.csv"))
     data = []
     for row in df.itertuples():
@@ -173,8 +173,10 @@ def getBooks():
             if int(row2[1]) in items:
                 book.append(row2[2])
         data.append(book)
-    return data
+    save = pd.DataFrame(data)
+    save.to_csv('preprocess.csv', header=None, index=False)
 
-#a_file = open("data.pkl", "wb")
-#pickle. dump(itemsim, a_file)
-#a_file. close()
+def getBooks():
+    books = pd.read_csv(join(dirname(__file__), "preprocess.csv"))
+    books = books.values.tolist()
+    return books
