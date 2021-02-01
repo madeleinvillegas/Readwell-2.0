@@ -54,7 +54,7 @@ public class HomeAdapter extends ArrayAdapter<Book> {
         author.setText(getItem(position).author);
         ImageView imageView = convertView.findViewById(R.id.home_item_cover);
         Picasso.get().load(getItem(position).thumbnail).resize(100, 120).centerCrop().into(imageView);
-        if(BookDetails.forViewing.recoTitle1 == getItem(position).title) {
+        /*if(BookDetails.forViewing.recoTitle1 == getItem(position).title) {
             BookDetails.forViewing.recoAuthor1 = getItem(position).author;
             BookDetails.forViewing.recoImg1 = getItem(position).thumbnail;
         }
@@ -66,6 +66,8 @@ public class HomeAdapter extends ArrayAdapter<Book> {
             BookDetails.forViewing.recoAuthor3 = getItem(position).author;
             BookDetails.forViewing.recoImg3 = getItem(position).thumbnail;
         }
+
+         */
         return convertView;
     }
 }

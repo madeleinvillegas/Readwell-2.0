@@ -10,6 +10,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
@@ -20,19 +21,30 @@ import java.util.List;
 
 import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.BookDetails;
+import ph.edu.dlsu.readwell20.MainActivity;
 import ph.edu.dlsu.readwell20.R;
 
 public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
         ListView listView = root.findViewById(R.id.home_list);
         HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, getSampleBooks());
         listView.setAdapter(adapter);
 
         return root;
     }
+
+    /*@Override
+    public void onResume() {
+        super.onResume();
+        Fragment currentFragment = getActivity().getFragmentManager().findFragmentById(R.id.fragment_container);
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.detach(currentFragment);
+        fragmentTransaction.attach(currentFragment);
+        fragmentTransaction.commit();
+    }*/
+
 
     private Book[] getSampleBooks() {
         // make a python instance
@@ -49,6 +61,28 @@ public class HomeFragment extends Fragment {
 
         //convert return value to java
         Object[][] tempBooks = obj.toJava(Object[][].class);
+
+        if(MainActivity.lastView!=null) {
+            ArrayList<Object[]> sortBooks = new ArrayList<>();
+            for (int i = 0; i < tempBooks.length; i++) {
+                sortBooks.add(tempBooks[i]);
+            }
+            ArrayList<Object[]> sortedBooks = new ArrayList<>();
+            for (int i = 0; i < sortBooks.size(); i++) {
+                if (sortBooks.get(i)[7] == MainActivity.lastView) {
+                    sortedBooks.add(0, sortBooks.get(i));
+                } else {
+                    sortedBooks.add(sortBooks.get(i));
+                }
+            }
+            //tempBooks = (Object[][]) sortedBooks.toArray();
+            //Object[][] tempBooks  = new Object[sortedBooks.size()][];
+            for (int i = 0; i < tempBooks.length; i++) {
+                Object[] row = sortedBooks.get(i);
+                tempBooks[i] = row;
+            }
+            System.out.println(tempBooks[0][6]);
+        }
 
         Book[] books = new Book[tempBooks.length];
         for (int i = 0; i < tempBooks.length; i++) {

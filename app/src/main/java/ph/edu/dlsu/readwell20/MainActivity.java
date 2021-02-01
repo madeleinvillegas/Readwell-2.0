@@ -17,6 +17,7 @@ import java.util.Stack;
 public class MainActivity extends AppCompatActivity {
     public static int lastTab = 0;
     public static Stack<Book> cart;
+    public static String lastView="Nonfiction";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

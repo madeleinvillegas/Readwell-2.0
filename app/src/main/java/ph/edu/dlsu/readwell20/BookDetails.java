@@ -43,6 +43,7 @@ public class BookDetails extends AppCompatActivity {
         author.setText(forViewing.author);
         rating.setText(forViewing.rating + "⭐");
         genre.setText("Genre: " + forViewing.genre);
+        MainActivity.lastView = forViewing.genre;
         price.setText("$ " + forViewing.price);
         synopsis.setText(forViewing.synopsis);
         others.setText(forViewing.publisher + "\n" + forViewing.language + "\n" + forViewing.datePublished
