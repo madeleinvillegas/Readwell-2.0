@@ -52,11 +52,11 @@ public class HomeFragment extends Fragment {
 
         Book[] books = new Book[tempBooks.length];
         for (int i = 0; i < tempBooks.length; i++) {
-            books[i] = new Book(String.valueOf(tempBooks[i][1]), String.valueOf(tempBooks[i][2]),String.valueOf(tempBooks[i][3]),
-                    String.valueOf(tempBooks[i][4]), String.valueOf(tempBooks[i][5]),
-                    String.valueOf(tempBooks[i][6]), String.valueOf(tempBooks[i][7]),
-                    String.valueOf(tempBooks[i][8]), String.valueOf(tempBooks[i][9]),
-                    String.valueOf(tempBooks[i][10]), String.valueOf(tempBooks[i][11]),
+            books[i] = new Book(String.valueOf(tempBooks[i][1]), String.valueOf(tempBooks[i][2]),String.valueOf(tempBooks[i][4]),
+                    String.valueOf(tempBooks[i][6]), String.valueOf(tempBooks[i][3]),
+                    String.valueOf(tempBooks[i][5]), String.valueOf(tempBooks[i][8]),
+                    String.valueOf(tempBooks[i][7]), String.valueOf(tempBooks[i][10]),
+                    String.valueOf(tempBooks[i][9]), String.valueOf(tempBooks[i][11]),
                     String.valueOf(tempBooks[i][12]), String.valueOf(tempBooks[i][13]), String.valueOf(tempBooks[i][14]));
         }
 

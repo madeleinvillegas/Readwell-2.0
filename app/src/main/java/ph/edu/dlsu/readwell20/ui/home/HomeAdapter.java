@@ -44,6 +44,7 @@ public class HomeAdapter extends ArrayAdapter<Book> {
         RelativeLayout item = convertView.findViewById(R.id.home_item);
         item.setOnClickListener(v -> {
             MainActivity.lastTab = 0;
+            BookDetails.forViewing = getItem(position);
             Intent intent = new Intent(context, BookDetails.class);
             context.startActivity(intent);
         });
@@ -53,8 +54,6 @@ public class HomeAdapter extends ArrayAdapter<Book> {
         author.setText(getItem(position).author);
         ImageView imageView = convertView.findViewById(R.id.home_item_cover);
         Picasso.get().load(getItem(position).thumbnail).resize(100, 120).centerCrop().into(imageView);
-//        title = findViewById(R.id.home_item_title);
-//        author = findViewById(R.id.home_item_author);
 
         return convertView;
     }
