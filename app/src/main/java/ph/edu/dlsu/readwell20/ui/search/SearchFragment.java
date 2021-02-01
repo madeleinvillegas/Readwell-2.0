@@ -31,6 +31,9 @@ public class SearchFragment extends Fragment {
     }
     public void searchTheBook() {
         previousSearch = search.getText().toString();
+
+
+
         MainActivity.lastTab = 1;
         Intent intent = new Intent(getContext(), BookDetails.class);
         startActivity(intent);
