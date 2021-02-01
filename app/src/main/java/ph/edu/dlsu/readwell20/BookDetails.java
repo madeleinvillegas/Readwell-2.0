@@ -9,6 +9,7 @@ import android.os.Bundle;
 import java.util.Objects;
 
 public class BookDetails extends AppCompatActivity {
+    public static Book forViewing;
     private TextView title, author, others, genre, synopsis, price, rating, sugg1Title, sugg1Author;
     private TextView sugg2Title, sugg2Author, sugg3Title, sugg3Author;
     private ImageView bookImage, suggestion1, suggestion2, suggestion3;
@@ -37,5 +38,14 @@ public class BookDetails extends AppCompatActivity {
         sugg3Title = findViewById(R.id.book_title_sug3);
         sugg3Author = findViewById(R.id.book_author_sug3);
         addToCart = findViewById(R.id.cart);
+        title.setText(forViewing.title);
+        author.setText(forViewing.author);
+        rating.setText(forViewing.rating);
+        genre.setText(forViewing.genre);
+        price.setText(forViewing.price);
+        synopsis.setText(forViewing.synopsis);
+        others.setText(forViewing.publisher + "\n" + forViewing.language + "\n" + forViewing.datePublished
+                + "\n" + forViewing.pages);
+        new DownloadImageTask((ImageView) findViewById(R.id.book_image)).execute(forViewing.thumbnail);
     }
 }
