@@ -9,33 +9,65 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import ph.edu.dlsu.readwell20.Book;
+import ph.edu.dlsu.readwell20.Database;
+import ph.edu.dlsu.readwell20.MainActivity;
 import ph.edu.dlsu.readwell20.R;
+import ph.edu.dlsu.readwell20.ui.home.HomeFragment;
 
 public class CartFragment extends Fragment {
     public static CartStack cartStack = new CartStack();
+    private static boolean init = true;
+    private ListView listView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        ListView listView = root.findViewById(R.id.home_list);
+        if (init) {
+            initCart();
+            init = false;
+        }
+
+        listView = root.findViewById(R.id.home_list);
         Book[] books = cartStack.toArray();
         if (books.length > 0) {
             CartAdapter adapter = new CartAdapter(requireActivity(), R.layout.fragment_cart_item, books);
             listView.setAdapter(adapter);
         }
 
+        FloatingActionButton btnSave = root.findViewById(R.id.save);
+        btnSave.setOnClickListener(v -> ButtonSave());
+        FloatingActionButton btnCheckout = root.findViewById(R.id.checkout);
+
         return root;
     }
 
-    private Book[] getSampleBooks() {
-        return new Book[] {
-                new Book("1984", "George Orwell", "https://covers.openlibrary.org/b/id/8579180-L.jpg"),
-                new Book("To Kill a Mockingbird", "Harper Lee", "https://covers.openlibrary.org/b/id/8410894-L.jpg"),
-                new Book("The Great Gatsby", "F. Scott Fitzgerald", "https://covers.openlibrary.org/b/id/8458093-L.jpg"),
-                new Book("Memoirs of a Geisha", "Arthur Golden", "https://covers.openlibrary.org/b/id/10541425-L.jpg"),
-                new Book("LIFE OF PI", "Yann Martel", "https://covers.openlibrary.org/b/id/529809-L.jpg"),
-                new Book("The Fault in Our Stars", "John Green", "https://covers.openlibrary.org/b/id/7285167-L.jpg")
-        };
+    private void ButtonSave() {
+        CartStackItem bottom = cartStack.getRoot();
+        StringBuilder toSave = new StringBuilder();
+        CartStackItem temp = bottom;
+
+        while (temp.top != null) {
+            toSave.append(temp.top.book.title).append(",,,").append(temp.top.book.count).append(",,,");
+            temp = temp.top;
+        }
+
+        Database db = new Database(getContext());
+        System.out.println(toSave.toString());
+        db.updateData(toSave.toString());
+    }
+
+    private void initCart() {
+        String[] lastCartStr = MainActivity.lastCart.split(",,,");
+        for (int i = 0; i < lastCartStr.length; i += 2) {
+            for (Book book : HomeFragment.books) {
+                if (book.title.equals(lastCartStr[i])) {
+                    book.count = Integer.parseInt(lastCartStr[i + 1]);
+                    cartStack.push(book);
+                }
+            }
+        }
     }
 }

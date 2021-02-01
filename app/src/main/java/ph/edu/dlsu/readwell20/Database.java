@@ -26,7 +26,7 @@ public class Database extends SQLiteOpenHelper {
             "(stat_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price TEXT)";
 
     private static final String CREATE_TABLE_LOGIN = "CREATE TABLE IF NOT EXISTS " + login +
-            "(login_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)";
+            "(login_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, saveCart TEXT)";
 
     private static final String DELETE_TABLE_BOOKS = "DROP TABLE IF EXISTS " + books;
     private static final String DELETE_TABLE_LOGIN = "DROP TABLE IF EXISTS " + login;
@@ -74,5 +74,14 @@ public class Database extends SQLiteOpenHelper {
         }
         cursor.close();
         return false;
+    }
+
+    public void updateData(String update) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", MainActivity.username);
+        contentValues.put("password", MainActivity.password);
+        contentValues.put("saveCart", update);
+        db.update(login, contentValues, "login_id = ?", new String[]{String.valueOf(MainActivity.ID)});
     }
 }
