@@ -7,27 +7,35 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 
+import java.util.ArrayList;
+
 import ph.edu.dlsu.readwell20.Book;
+import ph.edu.dlsu.readwell20.MainActivity;
 import ph.edu.dlsu.readwell20.R;
 
-public class HomeFragment extends Fragment {
-    public static Book[] books;
+public class HomeFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        books = getSampleBooks();
         ListView listView = root.findViewById(R.id.home_list);
-        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, books);
+        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, getSampleBooks());
         listView.setAdapter(adapter);
 
         return root;
     }
+
+    public void onStart(){
+        super.onStart();
+        //update your fragment
+    }
+
 
     private Book[] getSampleBooks() {
         // make a python instance
@@ -44,6 +52,22 @@ public class HomeFragment extends Fragment {
 
         //convert return value to java
         Object[][] tempBooks = obj.toJava(Object[][].class);
+        ArrayList<Object[]> sortBooks = new ArrayList<>();
+        for(int i=0; i<tempBooks.length; i++){
+            if(tempBooks[i][8].equals(MainActivity.lastView)){
+                sortBooks.add(0, tempBooks[i]);
+            }
+            else{
+                sortBooks.add(tempBooks[i]);
+            }
+        }
+        //Object[][] sortedBooks = new Object[sortBooks.size()][];
+        for(int i=0; i<sortBooks.size(); i++){
+            tempBooks[i] = sortBooks.get(i);
+        }
+        System.out.println(tempBooks[0][7]);
+
+
 
         Book[] books = new Book[tempBooks.length];
         for (int i = 0; i < tempBooks.length; i++) {

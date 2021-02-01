@@ -14,18 +14,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Stack;
 
-import ph.edu.dlsu.readwell20.ui.cart.CartAdapter;
-import ph.edu.dlsu.readwell20.ui.cart.CartFragment;
-import ph.edu.dlsu.readwell20.ui.cart.CartStack;
-import ph.edu.dlsu.readwell20.ui.home.HomeFragment;
-
 public class MainActivity extends AppCompatActivity {
     public static int lastTab = 0;
-    public static String username;
-    public static String password;
-    public static int ID;
-    public static String lastCart;
-    public static String lastView="Nonfiction";
+    public static Stack<Book> cart;
+    public static String lastView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

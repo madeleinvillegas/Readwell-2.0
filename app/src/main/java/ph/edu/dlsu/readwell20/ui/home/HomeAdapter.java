@@ -42,6 +42,7 @@ public class HomeAdapter extends ArrayAdapter<Book> {
         RelativeLayout item = convertView.findViewById(R.id.home_item);
         item.setOnClickListener(v -> {
             MainActivity.lastTab = 0;
+            MainActivity.lastView = getItem(position).genre;
             BookDetails.forViewing = getItem(position);
             Intent intent = new Intent(context, BookDetails.class);
             context.startActivity(intent);
