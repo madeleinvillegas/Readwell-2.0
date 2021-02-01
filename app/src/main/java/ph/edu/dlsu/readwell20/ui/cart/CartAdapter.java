@@ -15,17 +15,21 @@ import androidx.annotation.Nullable;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.R;
 
 public class CartAdapter extends ArrayAdapter<Book> {
     private final Context context;
     private final int resource;
+    private ArrayList<Book> books;
 
-    public CartAdapter(@NonNull Context context, int resource, @NonNull Book[] objects) {
+    public CartAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Book> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
+        this.books = objects;
     }
 
     @SuppressLint({"ViewHolder", "SetTextI18n", "ResourceType"})
@@ -54,9 +58,11 @@ public class CartAdapter extends ArrayAdapter<Book> {
         btnMinus.setOnClickListener(v -> {
             getItem(position).count--;
             count.setText(Integer.toString(getItem(position).count));
-            if (getItem(position).count == 0) CartFragment.cartStack.remove(getItem(position));
-
-            notifyDataSetChanged();
+            if (getItem(position).count == 0) {
+                CartFragment.cartStack.remove(getItem(position));
+                books.remove(getItem(position));
+                notifyDataSetChanged();
+            }
         });
 
         return convertView;

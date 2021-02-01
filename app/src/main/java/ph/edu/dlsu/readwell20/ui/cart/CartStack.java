@@ -1,5 +1,7 @@
 package ph.edu.dlsu.readwell20.ui.cart;
 
+import java.util.ArrayList;
+
 import ph.edu.dlsu.readwell20.Book;
 
 public class CartStack {
@@ -23,15 +25,13 @@ public class CartStack {
         size++;
     }
 
-    public Book[] toArray() {
-        Book[] toReturn = new Book[size];
+    public ArrayList<Book> toArray() {
+        ArrayList<Book> toReturn = new ArrayList<>();
         CartStackItem temp = topMost;
 
-        int counter = 0;
         while (temp.bottom != null) {
-            toReturn[counter] = temp.book;
+            toReturn.add(temp.book);
             temp = temp.bottom;
-            counter++;
         }
 
         return toReturn;

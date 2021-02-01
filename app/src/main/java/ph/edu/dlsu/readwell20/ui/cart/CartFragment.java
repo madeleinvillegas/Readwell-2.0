@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.Database;
 import ph.edu.dlsu.readwell20.MainActivity;
@@ -20,7 +22,7 @@ import ph.edu.dlsu.readwell20.ui.home.HomeFragment;
 public class CartFragment extends Fragment {
     public static CartStack cartStack = new CartStack();
     private static boolean init = true;
-    private ListView listView;
+    private ArrayList<Book> books;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
@@ -30,9 +32,9 @@ public class CartFragment extends Fragment {
             init = false;
         }
 
-        listView = root.findViewById(R.id.home_list);
-        Book[] books = cartStack.toArray();
-        if (books.length > 0) {
+        ListView listView = root.findViewById(R.id.home_list);
+        books = cartStack.toArray();
+        if (books.size() > 0) {
             CartAdapter adapter = new CartAdapter(requireActivity(), R.layout.fragment_cart_item, books);
             listView.setAdapter(adapter);
         }
@@ -45,14 +47,8 @@ public class CartFragment extends Fragment {
     }
 
     private void ButtonSave() {
-        CartStackItem bottom = cartStack.getRoot();
         StringBuilder toSave = new StringBuilder();
-        CartStackItem temp = bottom;
-
-        while (temp.top != null) {
-            toSave.append(temp.top.book.title).append(",,,").append(temp.top.book.count).append(",,,");
-            temp = temp.top;
-        }
+        for (Book temp : books) toSave.append(temp.title).append(",,,").append(temp.count).append(",,,");
 
         Database db = new Database(getContext());
         System.out.println(toSave.toString());
