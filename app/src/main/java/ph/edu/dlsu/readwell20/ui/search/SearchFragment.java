@@ -35,13 +35,12 @@ public class SearchFragment extends Fragment {
         Intent intent = new Intent(getContext(), BookDetails.class);
         startActivity(intent);
 
-//        String whatToSearch = search.getText().toString();
-//        if (TextUtils.isEmpty(whatToSearch)) {
-//            Toast.makeText(getActivity(), "Please enter a title on the search bar", Toast.LENGTH_SHORT).show();
+//        if (TextUtils.isEmpty(previousSearch)) {
+//            Toast.makeText(getActivity(), "Please enter a keyword on the search bar", Toast.LENGTH_SHORT).show();
 //        } else {
-            // Chaquopy stuff that doesn't work yet
+//            // Chaquopy stuff that doesn't work yet
 //            Python py = Python.getInstance();
-//            final PyObject pyobj = py.getModule("main");
+//            final PyObject pyobj = py.getModule("search");
 //            List<PyObject> obj = pyobj.callAttr("search", whatToSearch).asList();
 //            Intent intent = new Intent(getActivity(), Book.class);
 //            String[] data = {obj.get(0).toString(), obj.get(1).toString(), obj.get(2).toString(),

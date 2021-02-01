@@ -13,7 +13,7 @@ public class Book {
     }
 
     public Book(String title, String author, String publisher, String language, String datePublished,
-                String pages, String genre, String synopsis, String price, String rating,
+                String pages, String genre, String synopsis, String price, String rating, String thumbnail,
                 Book recommended1, Book recommended2, Book recommended3) {
         this.title = title;
         this.author = author;
@@ -25,6 +25,7 @@ public class Book {
         this.synopsis = synopsis;
         this.price = price;
         this.rating = rating;
+        this.thumbnail = thumbnail;
         this.recommended1 = recommended1;
         this.recommended2 = recommended2;
         this.recommended3 = recommended3;
