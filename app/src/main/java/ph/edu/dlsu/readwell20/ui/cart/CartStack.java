@@ -1,5 +1,6 @@
 package ph.edu.dlsu.readwell20.ui.cart;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import ph.edu.dlsu.readwell20.Book;
@@ -61,7 +62,6 @@ public class CartStack {
                 CartStackItem tempBot = temp.bottom;
                 tempBot.bottom = tempTop;
                 tempBot.top = tempBot;
-
                 return;
             }
             temp = temp.bottom;

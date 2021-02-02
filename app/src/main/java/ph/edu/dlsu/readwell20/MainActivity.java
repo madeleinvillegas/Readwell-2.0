@@ -16,7 +16,10 @@ import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
     public static int lastTab = 0;
-    public static Stack<Book> cart;
+    public static String username;
+    public static String password;
+    public static int ID;
+    public static String lastCart;
     public static String lastView;
 
     @Override

@@ -22,7 +22,7 @@ import ph.edu.dlsu.readwell20.ui.home.HomeFragment;
 public class CartFragment extends Fragment {
     public static CartStack cartStack = new CartStack();
     private static boolean init = true;
-    private ArrayList<Book> books;
+    public ArrayList<Book> books;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
@@ -47,8 +47,14 @@ public class CartFragment extends Fragment {
     }
 
     private void ButtonSave() {
+        CartStackItem bottom = cartStack.getRoot();
         StringBuilder toSave = new StringBuilder();
-        for (Book temp : books) toSave.append(temp.title).append(",,,").append(temp.count).append(",,,");
+        CartStackItem temp = bottom;
+
+        while (temp.top != null) {
+            toSave.append(temp.top.book.title).append(",,,").append(temp.top.book.count).append(",,,");
+            temp = temp.top;
+        }
 
         Database db = new Database(getContext());
         System.out.println(toSave.toString());

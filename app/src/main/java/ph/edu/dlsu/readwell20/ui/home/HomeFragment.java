@@ -19,13 +19,14 @@ import ph.edu.dlsu.readwell20.Book;
 import ph.edu.dlsu.readwell20.MainActivity;
 import ph.edu.dlsu.readwell20.R;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment {
+    public static Book[] books = getSampleBooks();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         ListView listView = root.findViewById(R.id.home_list);
-        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, getSampleBooks());
+        HomeAdapter adapter = new HomeAdapter(requireActivity(), R.layout.fragment_home_item, books);
         listView.setAdapter(adapter);
 
         return root;
@@ -37,7 +38,7 @@ public class HomeFragment extends Fragment{
     }
 
 
-    private Book[] getSampleBooks() {
+    private static Book[] getSampleBooks() {
         // make a python instance
         Python py = Python.getInstance();
 
