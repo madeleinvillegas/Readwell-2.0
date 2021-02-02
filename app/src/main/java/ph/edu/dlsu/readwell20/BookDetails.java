@@ -65,7 +65,8 @@ public class BookDetails extends AppCompatActivity {
         rating.setText(forViewing.rating + "⭐");
         genre.setText("Genre: " + forViewing.genre);
         MainActivity.lastView = forViewing.genre;
-        price.setText("$ " + forViewing.price);
+        String peso = String.valueOf(Float.parseFloat(forViewing.price) * 53);
+        price.setText("Php " + peso);
         synopsis.setText(forViewing.synopsis);
         others.setText(forViewing.publisher + "\n" + forViewing.language + "\n" + forViewing.datePublished
                 + "\n" + forViewing.pages);
@@ -86,11 +87,5 @@ public class BookDetails extends AppCompatActivity {
                 sugg3Author.setText(temp.author);
             }
         }
-
-        // Not sure if this part works so nakacomment muna
-//        new DownloadImageTask((ImageView) findViewById(R.id.book_image_sug1)).execute(forViewing.recoImg1);
-//        new DownloadImageTask((ImageView) findViewById(R.id.book_image_sug2)).execute(forViewing.recoImg2);
-//        new DownloadImageTask((ImageView) findViewById(R.id.book_image_sug3)).execute(forViewing.recoImg3);
-
     }
 }

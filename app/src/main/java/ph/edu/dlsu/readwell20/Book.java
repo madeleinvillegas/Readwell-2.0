@@ -2,7 +2,7 @@ package ph.edu.dlsu.readwell20;
 
 public class Book {
     public String title, author, publisher, language, datePublished, pages, genre, synopsis, price, rating, thumbnail;
-    public int count = 1;
+    public int count = 0;
     public String recoTitle1, recoTitle2, recoTitle3;
     public String recoImg1, recoAuthor1, recoImg2, recoAuthor2, recoImg3, recoAuthor3;
     public Book(String title, String author, String thumbnail) {

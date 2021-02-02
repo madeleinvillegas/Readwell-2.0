@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Readwell20">
         <activity android:name=".BookDetails"
+            android:label="View Book Details"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".UserSignup"
