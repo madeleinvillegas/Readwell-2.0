@@ -28,7 +28,7 @@ public class CartAdapter extends ArrayAdapter<Book> {
         this.resource = resource;
     }
 
-    @SuppressLint({"ViewHolder", "SetTextI18n", "ResourceType"})
+    @SuppressLint({"ViewHolder", "SetTextI18n"})
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -44,8 +44,6 @@ public class CartAdapter extends ArrayAdapter<Book> {
         Picasso.get().load(getItem(position).thumbnail).resize(100, 120).centerCrop().into(imageView);
 
         Button btnAdd = convertView.findViewById(R.id.add_button);
-
-
         btnAdd.setOnClickListener(v -> {
             getItem(position).count++;
             count.setText(Integer.toString(getItem(position).count));
@@ -54,9 +52,6 @@ public class CartAdapter extends ArrayAdapter<Book> {
         btnMinus.setOnClickListener(v -> {
             getItem(position).count--;
             count.setText(Integer.toString(getItem(position).count));
-            if (getItem(position).count == 0) CartFragment.cartStack.remove(getItem(position));
-
-            notifyDataSetChanged();
         });
 
         return convertView;
