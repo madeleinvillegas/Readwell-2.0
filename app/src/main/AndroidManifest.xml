@@ -16,6 +16,10 @@
         android:theme="@style/Theme.Readwell20"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".ui.cart.TransactionHistory"
+            android:parentActivityName=".MainActivity"
+            android:label="Transaction History" />
+        <activity
             android:name=".ui.cart.CheckoutConfirm"
             android:label="Confirm Checkout"
             android:parentActivityName=".MainActivity" />

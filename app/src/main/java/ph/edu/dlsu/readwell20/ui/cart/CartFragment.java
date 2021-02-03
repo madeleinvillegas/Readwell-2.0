@@ -29,6 +29,8 @@ public class CartFragment extends Fragment {
     public static CartStack cartStack = new CartStack();
     public static ArrayList<Book> books;
     private static boolean init = true;
+
+    @SuppressLint("StaticFieldLeak")
     public static CartAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,9 +59,15 @@ public class CartFragment extends Fragment {
             else Toast.makeText(getContext(), "Cart is Empty", Toast.LENGTH_SHORT).show();
         });
         FloatingActionButton btnHistory = root.findViewById(R.id.history);
-//        btnHistory.setOnClickListener(v -> ButtonCheckout());
+        btnHistory.setOnClickListener(v -> ButtonHistory());
 
         return root;
+    }
+
+    private void ButtonHistory() {
+        MainActivity.lastTab = 2;
+        Intent intent = new Intent(getContext(), TransactionHistory.class);
+        startActivity(intent);
     }
 
     private void ButtonCheckout() {
