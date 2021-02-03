@@ -12,20 +12,19 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.Stack;
-
 public class MainActivity extends AppCompatActivity {
-    public static int lastTab = 0;
     public static String username;
     public static String password;
     public static int ID;
     public static String lastCart;
+    public static int lastTab = 0;
     public static String lastView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.out.println(lastCart);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

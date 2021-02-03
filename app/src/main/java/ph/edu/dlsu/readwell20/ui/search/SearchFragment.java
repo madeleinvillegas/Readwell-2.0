@@ -9,12 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,10 +16,10 @@ import androidx.fragment.app.Fragment;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 
-import ph.edu.dlsu.readwell20.Book;
-import ph.edu.dlsu.readwell20.BookDetails;
 import ph.edu.dlsu.readwell20.MainActivity;
 import ph.edu.dlsu.readwell20.R;
+import ph.edu.dlsu.readwell20.Book;
+import ph.edu.dlsu.readwell20.BookDetails;
 
 public class SearchFragment extends Fragment {
     private EditText search;
@@ -61,10 +55,9 @@ public class SearchFragment extends Fragment {
 
         //convert return value to java
         Object[][] tempBooks = obj.toJava(Object[][].class);
-        if(tempBooks.length==0){
+        if (tempBooks.length==0) {
             Toast.makeText(getActivity(), "Please enter a keyword on the search bar 1", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        } else {
             BookDetails.forViewing = new Book(String.valueOf(tempBooks[0][0]), String.valueOf(tempBooks[0][1]),String.valueOf(tempBooks[0][3]),
                     String.valueOf(tempBooks[0][5]), String.valueOf(tempBooks[0][2]),
                     String.valueOf(tempBooks[0][4]), String.valueOf(tempBooks[0][7]),
@@ -76,20 +69,8 @@ public class SearchFragment extends Fragment {
             startActivity(intent);
         }
 
-
         if (TextUtils.isEmpty(previousSearch)) {
             Toast.makeText(getActivity(), "Please enter a keyword on the search bar 2", Toast.LENGTH_SHORT).show();
         }
-//        else {
-//            // Chaquopy stuff that doesn't work yet
-//            Python py = Python.getInstance();
-//            final PyObject pyobj = py.getModule("search");
-//            List<PyObject> obj = pyobj.callAttr("search", whatToSearch).asList();
-//            Intent intent = new Intent(getActivity(), Book.class);
-//            String[] data = {obj.get(0).toString(), obj.get(1).toString(), obj.get(2).toString(),
-//                            obj.get(3).toString(), obj.get(4).toString(), obj.get(5).toString()};
-//            intent.putExtra("data", data);
-//            startActivity(intent);
-//        }
     }
 }

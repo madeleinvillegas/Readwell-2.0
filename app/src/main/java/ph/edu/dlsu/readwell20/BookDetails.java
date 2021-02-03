@@ -1,54 +1,58 @@
 package ph.edu.dlsu.readwell20;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Button;
-import android.os.Bundle;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
 import ph.edu.dlsu.readwell20.ui.cart.CartFragment;
-import ph.edu.dlsu.readwell20.ui.cart.CartStack;
 import ph.edu.dlsu.readwell20.ui.home.HomeFragment;
 
 public class BookDetails extends AppCompatActivity {
     public static Book forViewing;
-    private TextView title, author, others, genre, synopsis, price, rating, sugg1Title, sugg1Author;
-    private TextView sugg2Title, sugg2Author, sugg3Title, sugg3Author;
 
-    private ImageView bookImage, suggestion1, suggestion2, suggestion3;
-    private Button addToCart;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        bookImage = findViewById(R.id.book_image);
-        title = findViewById(R.id.book_title);
-        author = findViewById(R.id.book_author);
-        rating = findViewById(R.id.book_rating);
-        genre = findViewById(R.id.book_genre);
-        price = findViewById(R.id.book_price);
-        synopsis = findViewById(R.id.book_synopsis);
-        others = findViewById(R.id.other_book_details);
-        bookImage = findViewById(R.id.book_image);
-        suggestion1 = findViewById(R.id.book_image_sug1);
-        suggestion2 = findViewById(R.id.book_image_sug2);
-        suggestion3 = findViewById(R.id.book_image_sug3);
-        sugg1Title = findViewById(R.id.book_title_sug1);
-        sugg1Author = findViewById(R.id.book_author_sug1);
-        sugg2Title = findViewById(R.id.book_title_sug2);
-        sugg2Author = findViewById(R.id.book_author_sug2);
-        sugg3Title = findViewById(R.id.book_title_sug3);
-        sugg3Author = findViewById(R.id.book_author_sug3);
-        addToCart = findViewById(R.id.cart);
+        TextView title = findViewById(R.id.book_title);
+        TextView author = findViewById(R.id.book_author);
+        TextView rating = findViewById(R.id.book_rating);
+        TextView genre = findViewById(R.id.book_genre);
+        TextView price = findViewById(R.id.book_price);
+        TextView synopsis = findViewById(R.id.book_synopsis);
+        ImageView bookImage = findViewById(R.id.book_image);
+
+        // Book Details
+        TextView pub = findViewById(R.id.book_pub);
+        pub.setText(forViewing.publisher);
+        TextView lang = findViewById(R.id.book_lang);
+        lang.setText(forViewing.language);
+        TextView date = findViewById(R.id.book_date);
+        date.setText(forViewing.datePublished);
+        TextView pages = findViewById(R.id.book_pages);
+        pages.setText(forViewing.pages);
+
+        // Suggestion
+        ImageView suggestion1 = findViewById(R.id.book_image_sug1);
+        ImageView suggestion2 = findViewById(R.id.book_image_sug2);
+        ImageView suggestion3 = findViewById(R.id.book_image_sug3);
+        TextView sugg1Title = findViewById(R.id.book_title_sug1);
+        TextView sugg1Author = findViewById(R.id.book_author_sug1);
+        TextView sugg2Title = findViewById(R.id.book_title_sug2);
+        TextView sugg2Author = findViewById(R.id.book_author_sug2);
+        TextView sugg3Title = findViewById(R.id.book_title_sug3);
+        TextView sugg3Author = findViewById(R.id.book_author_sug3);
+        Button addToCart = findViewById(R.id.cart);
 
         if (CartFragment.cartStack.contains(forViewing)) {
             addToCart.setText("Added");
@@ -68,9 +72,8 @@ public class BookDetails extends AppCompatActivity {
         String peso = String.valueOf(Float.parseFloat(forViewing.price) * 53);
         price.setText("Php " + peso);
         synopsis.setText(forViewing.synopsis);
-        others.setText(forViewing.publisher + "\n" + forViewing.language + "\n" + forViewing.datePublished
-                + "\n" + forViewing.pages);
-        new DownloadImageTask((ImageView) findViewById(R.id.book_image)).execute(forViewing.thumbnail);
+
+        Picasso.get().load(forViewing.thumbnail).resize(100, 120).centerCrop().into(bookImage);
 
         for (Book temp : HomeFragment.books) {
             if (temp.title.equals(forViewing.recoTitle1)) {

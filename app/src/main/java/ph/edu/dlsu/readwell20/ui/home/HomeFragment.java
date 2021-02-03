@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.chaquo.python.PyObject;
@@ -54,21 +53,18 @@ public class HomeFragment extends Fragment {
         //convert return value to java
         Object[][] tempBooks = obj.toJava(Object[][].class);
         ArrayList<Object[]> sortBooks = new ArrayList<>();
-        for(int i=0; i<tempBooks.length; i++){
-            if(tempBooks[i][8].equals(MainActivity.lastView)){
-                sortBooks.add(0, tempBooks[i]);
-            }
-            else{
-                sortBooks.add(tempBooks[i]);
+        for (Object[] tempBook : tempBooks) {
+            if (tempBook[8].equals(MainActivity.lastView)) {
+                sortBooks.add(0, tempBook);
+            } else {
+                sortBooks.add(tempBook);
             }
         }
+
         //Object[][] sortedBooks = new Object[sortBooks.size()][];
-        for(int i=0; i<sortBooks.size(); i++){
+        for (int i = 0; i < sortBooks.size(); i++) {
             tempBooks[i] = sortBooks.get(i);
         }
-        System.out.println(tempBooks[0][7]);
-
-
 
         Book[] books = new Book[tempBooks.length];
         for (int i = 0; i < tempBooks.length; i++) {

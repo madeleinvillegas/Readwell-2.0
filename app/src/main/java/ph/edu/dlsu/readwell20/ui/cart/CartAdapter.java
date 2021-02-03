@@ -23,7 +23,7 @@ import ph.edu.dlsu.readwell20.R;
 public class CartAdapter extends ArrayAdapter<Book> {
     private final Context context;
     private final int resource;
-    private ArrayList<Book> books;
+    private final ArrayList<Book> books;
 
     public CartAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Book> objects) {
         super(context, resource, objects);

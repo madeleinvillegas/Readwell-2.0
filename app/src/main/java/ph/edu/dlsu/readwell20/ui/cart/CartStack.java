@@ -1,6 +1,5 @@
 package ph.edu.dlsu.readwell20.ui.cart;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import ph.edu.dlsu.readwell20.Book;
@@ -12,14 +11,6 @@ public class CartStack {
 
     public void push(Book book) {
         CartStackItem temp = new CartStackItem(book);
-        temp.bottom = topMost;
-        topMost.top = temp;
-        topMost = temp;
-        size++;
-    }
-
-    public void push(Book book, int counter) {
-        CartStackItem temp = new CartStackItem(book, counter);
         temp.bottom = topMost;
         topMost.top = temp;
         topMost = temp;
@@ -58,10 +49,9 @@ public class CartStack {
 
         while (temp.bottom != null) {
             if (temp.book.title.equals(book.title)) {
-                CartStackItem tempTop = temp.top;
-                CartStackItem tempBot = temp.bottom;
-                tempBot.bottom = tempTop;
-                tempBot.top = tempBot;
+                if (temp.top != null) temp.top.bottom = temp.bottom;
+                else topMost = temp.bottom;
+                temp.bottom.top = temp.top;
                 return;
             }
             temp = temp.bottom;

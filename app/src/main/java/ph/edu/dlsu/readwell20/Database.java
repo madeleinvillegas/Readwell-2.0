@@ -1,6 +1,5 @@
 package ph.edu.dlsu.readwell20;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,39 +7,27 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.chaquo.python.PyObject;
-import com.chaquo.python.Python;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Database extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "readwelldb";
     private static final int DATABASE_VERSION = 1;
-    static final String books = "books";
     static final String login = "login";
 
     // Add columns as needed
-    private static final String CREATE_TABLE_BOOKS = "CREATE TABLE IF NOT EXISTS " + books +
-            "(stat_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price TEXT)";
-
     private static final String CREATE_TABLE_LOGIN = "CREATE TABLE IF NOT EXISTS " + login +
-            "(login_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, saveCart TEXT)";
+            "(login_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, " +
+            "password TEXT, saveCart TEXT, transactions TEXT)";
 
-    private static final String DELETE_TABLE_BOOKS = "DROP TABLE IF EXISTS " + books;
     private static final String DELETE_TABLE_LOGIN = "DROP TABLE IF EXISTS " + login;
 
     public Database(Context context) { super(context, DATABASE_NAME, null, DATABASE_VERSION); }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_BOOKS);
         db.execSQL(CREATE_TABLE_LOGIN);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DELETE_TABLE_BOOKS);
         db.execSQL(DELETE_TABLE_LOGIN);
         // Create tables again
         onCreate(db);
@@ -76,7 +63,7 @@ public class Database extends SQLiteOpenHelper {
         return false;
     }
 
-    public void updateData(String update) {
+    public void updateCart(String update) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", MainActivity.username);

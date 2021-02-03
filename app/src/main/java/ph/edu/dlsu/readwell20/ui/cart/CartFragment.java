@@ -21,15 +21,14 @@ import ph.edu.dlsu.readwell20.ui.home.HomeFragment;
 
 public class CartFragment extends Fragment {
     public static CartStack cartStack = new CartStack();
-    private static boolean init = true;
     public ArrayList<Book> books;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        if (init) {
+        if (MainActivity.lastCart != null) {
             initCart();
-            init = false;
+            MainActivity.lastCart = null;
         }
 
         ListView listView = root.findViewById(R.id.home_list);
@@ -57,8 +56,7 @@ public class CartFragment extends Fragment {
         }
 
         Database db = new Database(getContext());
-        System.out.println(toSave.toString());
-        db.updateData(toSave.toString());
+        db.updateCart(toSave.toString());
     }
 
     private void initCart() {
