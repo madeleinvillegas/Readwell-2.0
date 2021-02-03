@@ -63,12 +63,13 @@ public class Database extends SQLiteOpenHelper {
         return false;
     }
 
-    public void updateCart(String update) {
+    public void updateUser() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", MainActivity.username);
         contentValues.put("password", MainActivity.password);
-        contentValues.put("saveCart", update);
+        contentValues.put("saveCart", MainActivity.lastCart);
+        contentValues.put("transactions", MainActivity.transactions.toString());
         db.update(login, contentValues, "login_id = ?", new String[]{String.valueOf(MainActivity.ID)});
     }
 }

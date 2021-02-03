@@ -19,7 +19,7 @@ import ph.edu.dlsu.readwell20.ui.home.HomeFragment;
 public class BookDetails extends AppCompatActivity {
     public static Book forViewing;
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,7 @@ public class BookDetails extends AppCompatActivity {
         rating.setText(forViewing.rating + "⭐");
         genre.setText("Genre: " + forViewing.genre);
         MainActivity.lastView = forViewing.genre;
-        String peso = String.valueOf(Float.parseFloat(forViewing.price) * 53);
+        String peso = String.format("%.2f", Float.parseFloat(forViewing.price) * 53);
         price.setText("Php " + peso);
         synopsis.setText(forViewing.synopsis);
 

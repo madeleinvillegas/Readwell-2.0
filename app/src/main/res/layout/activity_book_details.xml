@@ -81,7 +81,7 @@
             android:id="@+id/book_price"
             android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/book_rating"
+            android:layout_below="@id/book_genre"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/book_image"

@@ -7,14 +7,12 @@ import ph.edu.dlsu.readwell20.Book;
 public class CartStack {
     private final CartStackItem root = new CartStackItem(null);
     private CartStackItem topMost = root;
-    public int size = 0;
 
     public void push(Book book) {
         CartStackItem temp = new CartStackItem(book);
         temp.bottom = topMost;
         topMost.top = temp;
         topMost = temp;
-        size++;
     }
 
     public ArrayList<Book> toArray() {
@@ -56,5 +54,9 @@ public class CartStack {
             }
             temp = temp.bottom;
         }
+    }
+
+    public void clear() {
+        topMost = root;
     }
 }

@@ -76,7 +76,7 @@ public class UserLogin extends AppCompatActivity {
         SQLiteDatabase data = db.getReadableDatabase();
 
         // SQL query
-        String query = "SELECT login_id, username, password, saveCart FROM " + Database.login;
+        String query = "SELECT login_id, username, password, saveCart, transactions FROM " + Database.login;
         Cursor cursor = data.rawQuery(query, null);
 
         Toast toast = Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT);
@@ -90,6 +90,8 @@ public class UserLogin extends AppCompatActivity {
                 MainActivity.password = password;
                 MainActivity.ID = cursor.getInt(cursor.getColumnIndex("login_id"));
                 MainActivity.lastCart = cursor.getString(cursor.getColumnIndex("saveCart"));
+                String temp = cursor.getString(cursor.getColumnIndex("transactions"));
+                MainActivity.transactions = new StringBuilder(temp == null ? "" : temp);
 
                 toast = Toast.makeText(getApplicationContext(), "Successfully Logged In", Toast.LENGTH_SHORT);
                 Intent main = new Intent(context, MainActivity.class);
