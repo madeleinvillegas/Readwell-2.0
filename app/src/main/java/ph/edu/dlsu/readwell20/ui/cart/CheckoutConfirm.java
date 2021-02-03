@@ -36,7 +36,7 @@ public class CheckoutConfirm extends AppCompatActivity {
             total += book.count * Double.parseDouble(book.price) * 53;
         }
         TextView totalPrice = findViewById(R.id.checkout_price);
-        totalPrice.setText(String.format("%.2f", total));
+        totalPrice.setText(String.format("PHP %.2f", total));
 
         Button confirm = findViewById(R.id.checkout_button);
         confirm.setOnClickListener(v -> updateTransaction());

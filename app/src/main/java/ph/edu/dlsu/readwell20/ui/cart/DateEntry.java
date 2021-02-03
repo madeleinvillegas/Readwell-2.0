@@ -11,8 +11,7 @@ public class DateEntry {
         this.entries = new ArrayList<>();
     }
 
-    public void addEntry(String title, String count) {
-        entries.add(title);
-        entries.add(count);
+    public void addEntry(String titleAndCount) {
+        entries.add(titleAndCount);
     }
 }
