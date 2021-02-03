@@ -42,8 +42,8 @@ public class HomeAdapter extends ArrayAdapter<Book> {
         RelativeLayout item = convertView.findViewById(R.id.home_item);
         item.setOnClickListener(v -> {
             MainActivity.lastTab = 0;
-            BookDetails.forViewing = getItem(position);
             MainActivity.lastView = getItem(position).genre;
+            BookDetails.forViewing = getItem(position);
             Intent intent = new Intent(context, BookDetails.class);
             context.startActivity(intent);
         });
@@ -53,19 +53,6 @@ public class HomeAdapter extends ArrayAdapter<Book> {
         author.setText(getItem(position).author);
         ImageView imageView = convertView.findViewById(R.id.home_item_cover);
         Picasso.get().load(getItem(position).thumbnail).resize(100, 120).centerCrop().into(imageView);
-
-//        if(BookDetails.forViewing.recoTitle1.equals(getItem(position).title)) {
-//            BookDetails.forViewing.recoAuthor1 = getItem(position).author;
-//            BookDetails.forViewing.recoImg1 = getItem(position).thumbnail;
-//        }
-//        if(BookDetails.forViewing.recoTitle2.equals(getItem(position).title)) {
-//            BookDetails.forViewing.recoAuthor2 = getItem(position).author;
-//            BookDetails.forViewing.recoImg2 = getItem(position).thumbnail;
-//        }
-//        if(BookDetails.forViewing.recoTitle3.equals(getItem(position).title)) {
-//            BookDetails.forViewing.recoAuthor3 = getItem(position).author;
-//            BookDetails.forViewing.recoImg3 = getItem(position).thumbnail;
-//        }
 
         return convertView;
     }

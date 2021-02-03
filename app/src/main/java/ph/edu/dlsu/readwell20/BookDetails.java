@@ -1,6 +1,7 @@
 package ph.edu.dlsu.readwell20;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -78,17 +79,26 @@ public class BookDetails extends AppCompatActivity {
         for (Book temp : HomeFragment.books) {
             if (temp.title.equals(forViewing.recoTitle1)) {
                 Picasso.get().load(temp.thumbnail).resize(100, 120).centerCrop().into(suggestion1);
+                suggestion1.setOnClickListener(v -> imageRedir(temp));
                 sugg1Title.setText(temp.title);
                 sugg1Author.setText(temp.author);
             } else if (temp.title.equals(forViewing.recoTitle2)) {
                 Picasso.get().load(temp.thumbnail).resize(100, 120).centerCrop().into(suggestion2);
+                suggestion2.setOnClickListener(v -> imageRedir(temp));
                 sugg2Title.setText(temp.title);
                 sugg2Author.setText(temp.author);
             } else if (temp.title.equals(forViewing.recoTitle3)) {
                 Picasso.get().load(temp.thumbnail).resize(100, 120).centerCrop().into(suggestion3);
+                suggestion3.setOnClickListener(v -> imageRedir(temp));
                 sugg3Title.setText(temp.title);
                 sugg3Author.setText(temp.author);
             }
         }
+    }
+
+    private void imageRedir(Book book) {
+        forViewing = book;
+        Intent intent = new Intent(this, BookDetails.class);
+        this.startActivity(intent);
     }
 }
