@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -33,14 +31,13 @@ public class SpecificDate extends AppCompatActivity {
             }
         }
 
-        ArrayList<Book> books = new ArrayList<>();
+        ArrayList<SpecificDateEntry> books = new ArrayList<>();
         assert specEntries != null;
         for (String temp : specEntries) {
             String[] item = temp.split(",,,");
             for (Book tempBook : HomeFragment.books) {
                 if (tempBook.title.equals(item[0])) {
-                    tempBook.count = Integer.parseInt(item[1]);
-                    books.add(tempBook);
+                    books.add(new SpecificDateEntry(tempBook, Integer.parseInt(item[1])));
                     break;
                 }
             }
@@ -51,11 +48,11 @@ public class SpecificDate extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         double totalPrice = 0;
-        for (Book book : books) {
-            totalPrice += Double.parseDouble(book.price) * book.count * 53;
+        for (SpecificDateEntry entry : books) {
+            totalPrice += Double.parseDouble(entry.book.price) * entry.counter * 53;
         }
 
-//        TextView total = findViewById(R.id.spec_price);
-//        total.setText(String.format("PHP %.2f", totalPrice));
+        TextView total = findViewById(R.id.spec_price);
+        total.setText(String.format("PHP %.2f", totalPrice));
     }
 }
