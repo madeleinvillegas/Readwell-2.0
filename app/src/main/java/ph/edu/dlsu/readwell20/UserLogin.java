@@ -30,13 +30,6 @@ public class UserLogin extends AppCompatActivity {
         context = UserLogin.this;
         db = new Database(this);
 
-        // REMOVE THIS
-        if (!db.doesUserExists("madel")) {
-            db.insertDataIntoLogin("madel", "123");
-            db.insertDataIntoLogin("qwe", "qwe");
-        }
-        // UNTIL HERE
-
         // Get user input
         loginUsername = findViewById(R.id.loginUsername);
         loginPassword = findViewById(R.id.loginPass);

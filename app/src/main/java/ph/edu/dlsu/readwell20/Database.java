@@ -13,7 +13,6 @@ public class Database extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     static final String login = "login";
 
-    // Add columns as needed
     private static final String CREATE_TABLE_LOGIN = "CREATE TABLE IF NOT EXISTS " + login +
             "(login_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, " +
             "password TEXT, saveCart TEXT, transactions TEXT)";

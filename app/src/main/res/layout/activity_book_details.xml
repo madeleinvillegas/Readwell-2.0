@@ -11,9 +11,6 @@
         android:paddingBottom="20dp"
         tools:context=".BookDetails"
         tools:ignore="MissingConstraints">
-        <!--    Data we have: \Title, \author/s, publisher, language, date published,
-            pages, \subjects/genre, \synopsis, \price, \rating
-    -->
         <ImageView
             android:id="@+id/book_image"
             android:layout_width="150dp"
@@ -68,7 +65,7 @@
 
         <TextView
             android:id="@+id/book_genre"
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/book_author"
             android:layout_marginLeft="10dp"

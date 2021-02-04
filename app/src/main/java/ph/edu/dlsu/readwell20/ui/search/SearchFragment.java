@@ -56,7 +56,7 @@ public class SearchFragment extends Fragment {
         //convert return value to java
         Object[][] tempBooks = obj.toJava(Object[][].class);
         if (tempBooks.length==0) {
-            Toast.makeText(getActivity(), "Please enter a keyword on the search bar 1", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please enter a valid keyword on the search bar", Toast.LENGTH_SHORT).show();
         } else {
             BookDetails.forViewing = new Book(String.valueOf(tempBooks[0][0]), String.valueOf(tempBooks[0][1]),String.valueOf(tempBooks[0][3]),
                     String.valueOf(tempBooks[0][5]), String.valueOf(tempBooks[0][2]),
